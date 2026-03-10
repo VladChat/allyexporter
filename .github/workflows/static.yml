@@ -32,6 +32,9 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+      - name: Add SPA 404 fallback
+        run: |
+          if [ -f ./dist/index.html ]; then cp ./dist/index.html ./dist/404.html; fi
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
