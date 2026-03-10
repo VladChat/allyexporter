@@ -1,8 +1,8 @@
 export const company = {
   legalName: "AllyExporter LLC",
   displayName: "AllyExporter LLC",
-  phone: "224-595-2729",
-  email: "vladislav.doroshenko@gmail.com",
+  phone: "(224) 532-9236",
+  email: "contact@allyexporter.com",
   addressLine1: "130 Old Oak Drive, Apt 247",
   city: "Buffalo Grove",
   state: "IL",
