@@ -54,3 +54,9 @@
     @apply bg-background text-foreground antialiased;
   }
 }
+
+@layer components {
+  .form-input {
+    @apply w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors;
+  }
+}
