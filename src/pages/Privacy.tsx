@@ -5,57 +5,54 @@ import PageMeta from "@/components/PageMeta";
 const Privacy = () => (
   <Layout>
     <PageMeta
-      title={`${company.privacy.title} — ${company.displayName}`}
+      title={`${company.privacy.title} - ${company.displayName}`}
       description={company.privacy.metaDescription}
     />
 
-    <section className="mx-auto max-w-3xl px-6 py-20 md:py-28">
-      <h1 className="mb-8 text-3xl font-bold text-foreground">{company.privacy.title}</h1>
+    <section className="section-space">
+      <div className="site-container max-w-4xl">
+        <div className="max-w-3xl space-y-4">
+          <p className="eyebrow">Legal</p>
+          <h1 className="page-title">{company.privacy.title}</h1>
+          <p className="page-lead">
+            This policy explains how {company.displayName} handles information received through this website.
+          </p>
+        </div>
 
-      <div className="space-y-6 text-sm leading-relaxed text-muted-foreground">
-        <p>
-          This privacy policy explains how {company.displayName} handles information
-          collected through this website.
-        </p>
+        <article className="surface-panel legal-content mt-8 p-6 sm:p-8">
+          <h2>Information We Collect</h2>
+          <p>
+            We collect information you provide voluntarily through the contact form, including name, email, subject,
+            and message content.
+          </p>
 
-        <h2 className="pt-4 text-base font-semibold text-foreground">Information We Collect</h2>
-        <p>
-          We may collect personal information you voluntarily provide through our contact
-          form, such as your name, email address, and message content. We do not collect
-          information automatically beyond standard server logs.
-        </p>
+          <h2>How We Use Information</h2>
+          <p>Submitted information is used only to review and respond to inquiries directed to the company.</p>
 
-        <h2 className="pt-4 text-base font-semibold text-foreground">How We Use Information</h2>
-        <p>
-          Any information collected is used solely to respond to your inquiries. We do not
-          sell, rent, or share personal information with third parties for marketing purposes.
-        </p>
+          <h2>Cookies and Tracking</h2>
+          <p>
+            This website does not use analytics or advertising trackers. Basic technical cookies may be used only when
+            needed for site operation.
+          </p>
 
-        <h2 className="pt-4 text-base font-semibold text-foreground">Cookies</h2>
-        <p>
-          This website does not use tracking cookies or third-party analytics. Standard
-          technical cookies may be used to ensure the website functions properly.
-        </p>
+          <h2>Third-Party Infrastructure</h2>
+          <p>
+            Website hosting and form-processing infrastructure may process standard request data, such as IP address,
+            as part of normal technical operations.
+          </p>
 
-        <h2 className="pt-4 text-base font-semibold text-foreground">Third-Party Services</h2>
-        <p>
-          This website is hosted using third-party infrastructure. These providers may
-          process standard server request data (such as IP addresses) as part of normal
-          operations.
-        </p>
+          <h2>Policy Updates</h2>
+          <p>This policy may be updated as needed. The latest version is published on this page.</p>
 
-        <h2 className="pt-4 text-base font-semibold text-foreground">Changes</h2>
-        <p>
-          We may update this policy as needed. Any changes will be reflected on this page.
-        </p>
-
-        <h2 className="pt-4 text-base font-semibold text-foreground">Contact</h2>
-        <p>
-          If you have questions about this policy, contact us at{" "}
-          <a href={`mailto:${company.email}`} className="text-primary hover:underline">
-            {company.email}
-          </a>.
-        </p>
+          <h2>Contact</h2>
+          <p>
+            Questions about this policy can be sent to{" "}
+            <a href={`mailto:${company.email}`} className="text-primary hover:underline">
+              {company.email}
+            </a>
+            .
+          </p>
+        </article>
       </div>
     </section>
   </Layout>

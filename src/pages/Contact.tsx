@@ -1,8 +1,8 @@
-import { useState, FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { company } from "@/config/company";
 import Layout from "@/components/Layout";
 import PageMeta from "@/components/PageMeta";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, MessageSquareText } from "lucide-react";
 import { z } from "zod";
 import { submitContactMessage } from "@/services/contactService";
 
@@ -16,6 +16,16 @@ const contactSchema = z.object({
 type FormData = z.infer<typeof contactSchema>;
 type FormErrors = Partial<Record<keyof FormData, string>>;
 type Status = "idle" | "loading" | "success" | "error";
+
+const fieldMeta = {
+  name: { id: "contact-name", hintId: "contact-name-hint", errorId: "contact-name-error" },
+  email: { id: "contact-email", hintId: "contact-email-hint", errorId: "contact-email-error" },
+  subject: { id: "contact-subject", hintId: "contact-subject-hint", errorId: "contact-subject-error" },
+  message: { id: "contact-message", hintId: "contact-message-hint", errorId: "contact-message-error" },
+} as const;
+
+const describedBy = (hintId: string, hasError: boolean, errorId: string) =>
+  hasError ? `${hintId} ${errorId}` : hintId;
 
 const Contact = () => {
   const [form, setForm] = useState<FormData>({ name: "", email: "", subject: "", message: "" });
@@ -40,6 +50,7 @@ const Contact = () => {
       setErrors(fieldErrors);
       return;
     }
+
     setErrors({});
     setStatus("loading");
     try {
@@ -62,98 +73,188 @@ const Contact = () => {
         description={company.contact.metaDescription}
       />
 
-      <section className="mx-auto max-w-5xl px-6 py-20 md:py-28">
-        <h1 className="mb-12 text-3xl font-bold text-foreground">{company.contact.title}</h1>
-
-        <div className="grid gap-12 md:grid-cols-5">
-          <div className="panel space-y-7 p-6 md:col-span-2">
-            <div className="flex items-start gap-3">
-              <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-              <div>
-                <p className="text-xs text-muted-foreground">Email</p>
-                <a href={`mailto:${company.email}`} className="text-sm font-medium text-foreground hover:text-primary">
-                  {company.email}
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Phone className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-              <div>
-                <p className="text-xs text-muted-foreground">Phone</p>
-                <a href={`tel:${company.phone}`} className="text-sm font-medium text-foreground hover:text-primary">
-                  {company.phone}
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-              <div>
-                <p className="text-xs text-muted-foreground">Address</p>
-                <p className="text-sm font-medium text-foreground">{company.fullAddress}</p>
-              </div>
-            </div>
+      <section className="section-space">
+        <div className="site-container">
+          <div className="max-w-3xl space-y-4">
+            <p className="eyebrow">Official Contact</p>
+            <h1 className="page-title">{company.contact.title}</h1>
+            <p className="page-lead">Use this form for public or business inquiries to {company.displayName}.</p>
           </div>
 
-          <div className="md:col-span-3">
-            <form onSubmit={handleSubmit} noValidate className="panel p-8">
+          <div className="mt-10 grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">
+            <aside className="surface-panel p-6 sm:p-7">
+              <h2 className="text-lg font-semibold text-foreground">Contact Details</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                For written requests, the form on this page is the recommended channel.
+              </p>
+
+              <ul className="mt-6 space-y-5">
+                <li className="flex items-start gap-3">
+                  <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Email</p>
+                    <a href={`mailto:${company.email}`} className="mt-1 inline-block text-sm font-medium text-foreground hover:text-primary">
+                      {company.email}
+                    </a>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Phone className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Phone</p>
+                    <a href={`tel:${company.phone}`} className="mt-1 inline-block text-sm font-medium text-foreground hover:text-primary">
+                      {company.phone}
+                    </a>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Address</p>
+                    <p className="mt-1 text-sm font-medium text-foreground">{company.fullAddress}</p>
+                  </div>
+                </li>
+              </ul>
+            </aside>
+
+            <form onSubmit={handleSubmit} noValidate aria-busy={status === "loading"} className="surface-panel p-6 sm:p-7">
+              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground">
+                <MessageSquareText className="h-5 w-5 text-primary" aria-hidden="true" />
+                Send a Message
+              </h2>
+
               {status === "success" && (
-                <div className="mb-6 rounded-md border border-primary/30 bg-primary/5 px-4 py-3 text-sm text-primary">
-                  Your message has been sent successfully.
-                </div>
-              )}
-              {status === "error" && (
-                <div className="mb-6 rounded-md border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm text-destructive">
-                  Unable to send your message. Please try again later.
+                <div role="status" aria-live="polite" className="status-banner status-banner-success mt-6">
+                  <strong className="font-semibold">Message sent.</strong> Thank you for contacting us.
                 </div>
               )}
 
-              <div className="space-y-5">
-                <Field label="Full Name" error={errors.name}>
+              {status === "error" && (
+                <div role="alert" className="status-banner status-banner-error mt-6">
+                  <strong className="font-semibold">Message not sent.</strong> Please try again later.
+                </div>
+              )}
+
+              <div className="mt-6 space-y-5">
+                <div className="field-group">
+                  <label htmlFor={fieldMeta.name.id} className="field-label">
+                    Full Name
+                  </label>
                   <input
+                    id={fieldMeta.name.id}
+                    name="name"
                     type="text"
+                    autoComplete="name"
                     value={form.name}
                     onChange={(e) => handleChange("name", e.target.value)}
                     className="form-input"
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={describedBy(fieldMeta.name.hintId, Boolean(errors.name), fieldMeta.name.errorId)}
                     required
                     maxLength={100}
                   />
-                </Field>
-                <Field label="Email Address" error={errors.email}>
+                  <p id={fieldMeta.name.hintId} className="field-hint">
+                    Enter your full name.
+                  </p>
+                  {errors.name && (
+                    <p id={fieldMeta.name.errorId} className="field-error">
+                      Error: {errors.name}
+                    </p>
+                  )}
+                </div>
+
+                <div className="field-group">
+                  <label htmlFor={fieldMeta.email.id} className="field-label">
+                    Email Address
+                  </label>
                   <input
+                    id={fieldMeta.email.id}
+                    name="email"
                     type="email"
+                    autoComplete="email"
                     value={form.email}
                     onChange={(e) => handleChange("email", e.target.value)}
                     className="form-input"
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={describedBy(fieldMeta.email.hintId, Boolean(errors.email), fieldMeta.email.errorId)}
                     required
                     maxLength={255}
                   />
-                </Field>
-                <Field label="Subject" error={errors.subject}>
+                  <p id={fieldMeta.email.hintId} className="field-hint">
+                    We will use this email address to respond.
+                  </p>
+                  {errors.email && (
+                    <p id={fieldMeta.email.errorId} className="field-error">
+                      Error: {errors.email}
+                    </p>
+                  )}
+                </div>
+
+                <div className="field-group">
+                  <label htmlFor={fieldMeta.subject.id} className="field-label">
+                    Subject
+                  </label>
                   <input
+                    id={fieldMeta.subject.id}
+                    name="subject"
                     type="text"
                     value={form.subject}
                     onChange={(e) => handleChange("subject", e.target.value)}
                     className="form-input"
+                    aria-invalid={Boolean(errors.subject)}
+                    aria-describedby={describedBy(
+                      fieldMeta.subject.hintId,
+                      Boolean(errors.subject),
+                      fieldMeta.subject.errorId,
+                    )}
                     required
                     maxLength={200}
                   />
-                </Field>
-                <Field label="Message" error={errors.message}>
+                  <p id={fieldMeta.subject.hintId} className="field-hint">
+                    Keep the subject brief and specific.
+                  </p>
+                  {errors.subject && (
+                    <p id={fieldMeta.subject.errorId} className="field-error">
+                      Error: {errors.subject}
+                    </p>
+                  )}
+                </div>
+
+                <div className="field-group">
+                  <label htmlFor={fieldMeta.message.id} className="field-label">
+                    Message
+                  </label>
                   <textarea
+                    id={fieldMeta.message.id}
+                    name="message"
                     value={form.message}
                     onChange={(e) => handleChange("message", e.target.value)}
-                    rows={5}
-                    className="form-input resize-none"
+                    rows={6}
+                    className="form-input resize-y"
+                    aria-invalid={Boolean(errors.message)}
+                    aria-describedby={describedBy(
+                      fieldMeta.message.hintId,
+                      Boolean(errors.message),
+                      fieldMeta.message.errorId,
+                    )}
                     required
                     maxLength={5000}
                   />
-                </Field>
+                  <p id={fieldMeta.message.hintId} className="field-hint">
+                    Include the details needed for a useful response.
+                  </p>
+                  {errors.message && (
+                    <p id={fieldMeta.message.errorId} className="field-error">
+                      Error: {errors.message}
+                    </p>
+                  )}
+                </div>
               </div>
 
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/85 disabled:opacity-50"
+                className="button-primary mt-7 w-full disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === "loading" ? "Sending..." : "Send Message"}
               </button>
@@ -164,21 +265,5 @@ const Contact = () => {
     </Layout>
   );
 };
-
-const Field = ({
-  label,
-  error,
-  children,
-}: {
-  label: string;
-  error?: string;
-  children: React.ReactNode;
-}) => (
-  <div>
-    <label className="mb-1.5 block text-xs font-medium text-muted-foreground">{label}</label>
-    {children}
-    {error && <p className="mt-1 text-xs text-destructive">{error}</p>}
-  </div>
-);
 
 export default Contact;
