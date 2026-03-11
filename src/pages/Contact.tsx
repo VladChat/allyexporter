@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import PageMeta from "@/components/PageMeta";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { z } from "zod";
+import { submitContactMessage } from "@/services/contactService";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Full name is required").max(100),
@@ -15,13 +16,6 @@ const contactSchema = z.object({
 type FormData = z.infer<typeof contactSchema>;
 type FormErrors = Partial<Record<keyof FormData, string>>;
 type Status = "idle" | "loading" | "success" | "error";
-
-async function submitContactForm(data: FormData): Promise<void> {
-  // Integration point: replace with actual backend call (e.g., edge function, email API)
-  // For now, this throws to honestly indicate no backend is connected.
-  console.info("Contact form data ready for submission:", data);
-  throw new Error("No backend connected. Please configure a form handler.");
-}
 
 const Contact = () => {
   const [form, setForm] = useState<FormData>({ name: "", email: "", subject: "", message: "" });
@@ -49,7 +43,11 @@ const Contact = () => {
     setErrors({});
     setStatus("loading");
     try {
-      await submitContactForm(result.data);
+      const submitResult = await submitContactMessage(result.data);
+      if (!submitResult.success) {
+        setStatus("error");
+        return;
+      }
       setStatus("success");
       setForm({ name: "", email: "", subject: "", message: "" });
     } catch {
@@ -102,12 +100,12 @@ const Contact = () => {
             <form onSubmit={handleSubmit} noValidate className="rounded-xl border border-border/50 bg-card p-8">
               {status === "success" && (
                 <div className="mb-6 rounded-md border border-primary/30 bg-primary/5 px-4 py-3 text-sm text-primary">
-                  Your message has been sent. We'll be in touch.
+                  Your message has been sent successfully.
                 </div>
               )}
               {status === "error" && (
                 <div className="mb-6 rounded-md border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm text-destructive">
-                  Unable to send your message. The contact form backend is not yet connected. Please reach out via email or phone.
+                  Unable to send your message. Please try again later.
                 </div>
               )}
 
