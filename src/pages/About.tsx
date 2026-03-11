@@ -5,7 +5,7 @@ import PageMeta from "@/components/PageMeta";
 const About = () => (
   <Layout>
     <PageMeta
-      title={`${company.about.title} — ${company.displayName}`}
+      title={`${company.about.title} - ${company.displayName}`}
       description={company.about.metaDescription}
     />
 
@@ -14,21 +14,17 @@ const About = () => (
 
       <div className="space-y-6 text-sm leading-relaxed text-muted-foreground">
         <p>
-          {company.displayName} is a company registered and operating in the United States,
-          headquartered in {company.city}, {company.state}.
+          {company.displayName} is a U.S. company based in {company.city}, {company.state}.
         </p>
         <p>
-          This website provides official company information for public reference. It is
-          maintained to establish a verifiable online presence for use in business
-          registrations, developer accounts, and other official purposes.
+          This site is maintained as a verified reference for business and contact information.
         </p>
         <p>
-          Visitors can find the company's legal details, contact information, and relevant
-          policies on this site. All information is kept accurate and up to date.
+          You can find legal identity details, contact methods, and website policies in one place.
         </p>
       </div>
 
-      <div className="mt-12 rounded-xl border border-border/50 bg-card p-8">
+      <div className="panel mt-12 p-8">
         <h2 className="mb-4 text-base font-semibold text-foreground">Company Details</h2>
         <dl className="grid gap-4 text-sm sm:grid-cols-2">
           <div>

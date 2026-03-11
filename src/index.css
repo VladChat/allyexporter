@@ -52,11 +52,27 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    background-image: radial-gradient(circle at 15% 10%, hsl(var(--primary) / 0.12), transparent 35%);
   }
 }
 
 @layer components {
+  .panel {
+    @apply rounded-xl border border-border bg-card;
+    box-shadow: 0 16px 34px -24px hsl(var(--foreground) / 0.55), 0 2px 8px hsl(var(--background) / 0.7);
+  }
+
+  .panel-hover {
+    @apply transition-all duration-200;
+  }
+
+  .panel-hover:hover {
+    @apply border-primary/45;
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px -24px hsl(var(--primary) / 0.35), 0 6px 14px -10px hsl(var(--foreground) / 0.45);
+  }
+
   .form-input {
-    @apply w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors;
+    @apply w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary;
   }
 }

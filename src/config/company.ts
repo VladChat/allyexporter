@@ -16,20 +16,20 @@ export const company = {
   hero: {
     headline: "AllyExporter LLC",
     subheadline:
-      "A U.S.-based company providing official business information and public contact details.",
+      "Official website with verified company information and direct contact details.",
     cta: "Contact Us",
   },
 
   about: {
     title: "About",
     metaDescription:
-      "Learn about AllyExporter LLC — a U.S.-registered company based in Illinois.",
+      "Company profile and verified legal details for AllyExporter LLC in Illinois.",
   },
 
   contact: {
     title: "Contact",
     metaDescription:
-      "Get in touch with AllyExporter LLC. Reach us by phone, email, or contact form.",
+      "Get in touch with AllyExporter LLC by email, phone, or contact form.",
   },
 
   privacy: {
@@ -45,9 +45,9 @@ export const company = {
   },
 
   home: {
-    metaTitle: "AllyExporter LLC — Official Company Website",
+    metaTitle: "AllyExporter LLC - Official Company Website",
     metaDescription:
-      "AllyExporter LLC is a U.S.-based company. Visit for official business information and contact details.",
+      "Official AllyExporter LLC website with verified business and contact information.",
   },
 
   nav: {
@@ -66,17 +66,17 @@ export const company = {
     {
       title: "Business Operations",
       description:
-        "AllyExporter LLC manages and coordinates business activities across its operational scope within the United States.",
+        "Coordinates day-to-day operations and business administration in the United States.",
     },
     {
-      title: "Brand Management",
+      title: "Brand Presence",
       description:
-        "The company maintains its brand presence and manages official accounts across digital platforms and app marketplaces.",
+        "Maintains official brand presence and communication channels across digital platforms.",
     },
     {
-      title: "Public Company Contact",
+      title: "Public Contact",
       description:
-        "This website serves as the official public point of contact for AllyExporter LLC, providing verified company information.",
+        "Provides a verified channel for public and business inquiries.",
     },
   ],
 } as const;

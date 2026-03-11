@@ -58,7 +58,7 @@ const Contact = () => {
   return (
     <Layout>
       <PageMeta
-        title={`${company.contact.title} — ${company.displayName}`}
+        title={`${company.contact.title} - ${company.displayName}`}
         description={company.contact.metaDescription}
       />
 
@@ -66,8 +66,7 @@ const Contact = () => {
         <h1 className="mb-12 text-3xl font-bold text-foreground">{company.contact.title}</h1>
 
         <div className="grid gap-12 md:grid-cols-5">
-          {/* Info */}
-          <div className="space-y-8 md:col-span-2">
+          <div className="panel space-y-7 p-6 md:col-span-2">
             <div className="flex items-start gap-3">
               <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
               <div>
@@ -95,9 +94,8 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Form */}
           <div className="md:col-span-3">
-            <form onSubmit={handleSubmit} noValidate className="rounded-xl border border-border/50 bg-card p-8">
+            <form onSubmit={handleSubmit} noValidate className="panel p-8">
               {status === "success" && (
                 <div className="mb-6 rounded-md border border-primary/30 bg-primary/5 px-4 py-3 text-sm text-primary">
                   Your message has been sent successfully.
@@ -157,7 +155,7 @@ const Contact = () => {
                 disabled={status === "loading"}
                 className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/85 disabled:opacity-50"
               >
-                {status === "loading" ? "Sending…" : "Send Message"}
+                {status === "loading" ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>
