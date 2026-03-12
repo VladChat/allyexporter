@@ -17,6 +17,7 @@ export const company = {
   nav: {
     home: "Home",
     about: "About",
+    services: "Services",
     contact: "Contact",
   },
 
@@ -25,19 +26,48 @@ export const company = {
     metaDescription:
       "Official website of AllyExporter LLC with company information, contact details, and legal pages.",
     heroHeadline: "AllyExporter LLC",
-    heroSubheadline: "Official company information, contact details, and legal pages.",
-    heroActionLabel: "Contact",
+    heroSubheadline: "Official company profile, core services, and contact information for business communication.",
+    heroActionLabel: "Get in touch",
+    sectionNav: {
+      home: "Home",
+      about: "About",
+      services: "Services",
+      contact: "Contact",
+    },
     companyTitle: "Company",
     companyParagraphs: [
       "AllyExporter LLC is a private company based in Illinois, United States.",
       "This website provides official company information, contact details, and legal pages.",
       "The company owns and manages brand assets and related business activities.",
     ],
-    aboutTitle: "Website",
-    aboutText: "This website serves as a public company profile for verification and communication purposes.",
+    aboutTitle: "About us",
+    aboutText:
+      "AllyExporter LLC maintains a clear and reliable online company presence for partners, clients, and business verification.",
+    aboutParagraphs: [
+      "We focus on building trusted business relationships and clear communication channels with stakeholders.",
+      "Our official website is designed to provide concise information, straightforward navigation, and dependable contact options.",
+      "This digital presence supports transparency and helps partners quickly access key company details.",
+    ],
+    servicesTitle: "Our services",
+    servicesIntro:
+      "We provide practical support capabilities for business operations, communication, and partner collaboration.",
+    services: [
+      {
+        title: "Consulting",
+        description: "Business-focused guidance for operational clarity and strategic decision support.",
+      },
+      {
+        title: "Solutions",
+        description: "Structured company solutions designed around reliability, communication, and execution.",
+      },
+      {
+        title: "Support",
+        description: "Responsive assistance for inquiries, coordination, and ongoing business interactions.",
+      },
+    ],
     contactCtaTitle: "Business contact",
-    contactCtaText: "For general company inquiries, please use the contact page.",
-    contactCtaActionLabel: "Contact",
+    contactCtaText: "For general company inquiries, use the form below or reach out using our official contact details.",
+    contactCtaActionLabel: "Send message",
   },
 
   about: {
@@ -69,6 +99,9 @@ export const company = {
   },
 
   footer: {
+    tagline: "Official company information and communication channel.",
+    quickLinksLabel: "Quick links",
+    socialLabel: "Follow",
     privacyLabel: "Privacy",
     termsLabel: "Terms",
     contactLabel: "Contact",

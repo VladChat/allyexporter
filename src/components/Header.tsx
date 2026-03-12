@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { company } from "@/config/company";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -6,18 +6,42 @@ import { cn } from "@/lib/utils";
 import BrandMark from "./BrandMark";
 
 const navItems = [
-  { label: company.nav.home, to: "/" },
-  { label: company.nav.about, to: "/about" },
-  { label: company.nav.contact, to: "/contact" },
+  { label: company.nav.home, id: "home" },
+  { label: company.nav.about, id: "about" },
+  { label: company.nav.services, id: "services" },
+  { label: company.nav.contact, id: "contact" },
 ];
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setOpen(false);
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleNavClick = (id: string) => {
+    if (location.pathname === "/") {
+      scrollToSection(id);
+      return;
+    }
+
+    navigate(`/#${id}`);
+  };
+
+  const isItemActive = (id: string) => {
+    if (location.pathname !== "/") return false;
+    if (id === "home") return !location.hash || location.hash === "#home";
+    return location.hash === `#${id}`;
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/85 bg-background/90 backdrop-blur-md">
@@ -34,11 +58,12 @@ const Header = () => {
 
         <nav aria-label="Main navigation" className="hidden items-center gap-2 md:flex">
           {navItems.map((item) => {
-            const active = location.pathname === item.to;
+            const active = isItemActive(item.id);
             return (
-              <Link
-                key={item.to}
-                to={item.to}
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleNavClick(item.id)}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "inline-flex min-h-11 items-center rounded-[14px] border px-4 text-sm font-medium transition-colors",
@@ -48,7 +73,7 @@ const Header = () => {
                 )}
               >
                 {item.label}
-              </Link>
+              </button>
             );
           })}
         </nav>
@@ -69,11 +94,12 @@ const Header = () => {
         <nav id="mobile-navigation" aria-label="Mobile navigation" className="section-divider bg-background md:hidden">
           <div className="site-container grid gap-2 py-3">
             {navItems.map((item) => {
-              const active = location.pathname === item.to;
+              const active = isItemActive(item.id);
               return (
-                <Link
-                  key={item.to}
-                  to={item.to}
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => handleNavClick(item.id)}
                   aria-current={active ? "page" : undefined}
                   className={cn(
                     "inline-flex min-h-11 items-center rounded-[14px] border px-4 text-sm font-medium transition-colors",
@@ -83,7 +109,7 @@ const Header = () => {
                   )}
                 >
                   {item.label}
-                </Link>
+                </button>
               );
             })}
           </div>

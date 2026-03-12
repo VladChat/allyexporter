@@ -133,6 +133,10 @@
     @apply inline-flex min-h-11 items-center justify-center rounded-[14px] border border-border bg-secondary/55 px-6 py-2.5 text-sm font-medium text-foreground transition hover:border-primary/40 hover:text-primary;
   }
 
+  .footer-social-link {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-border bg-secondary/55 text-muted-foreground transition hover:border-primary/40 hover:text-primary;
+  }
+
   .field-group {
     @apply space-y-2;
   }
