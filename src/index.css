@@ -14,7 +14,7 @@
     --background: 212 36% 9%;
     --foreground: 210 25% 92%;
 
-    --card: 213 32% 12%;
+    --card: 213 32% 13%;
     --card-foreground: 210 25% 92%;
 
     --popover: 213 32% 12%;
@@ -23,20 +23,20 @@
     --primary: 219 100% 65%;
     --primary-foreground: 210 25% 92%;
 
-    --secondary: 214 32% 14%;
+    --secondary: 214 31% 15%;
     --secondary-foreground: 210 25% 92%;
 
-    --muted: 214 28% 15%;
-    --muted-foreground: 211 17% 66%;
+    --muted: 214 28% 16%;
+    --muted-foreground: 211 17% 70%;
 
-    --accent: 216 29% 20%;
+    --accent: 216 29% 21%;
     --accent-foreground: 210 25% 92%;
 
     --destructive: 0 68% 56%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 216 29% 20%;
-    --input: 216 29% 20%;
+    --border: 216 29% 26%;
+    --input: 216 29% 26%;
     --ring: 219 100% 65%;
 
     --radius: 14px;
@@ -87,22 +87,22 @@
   }
 
   .section-space {
-    @apply py-8 md:py-12 lg:py-20;
+    @apply py-8 md:py-10 lg:py-12;
   }
 
   .section-space-compact {
-    @apply py-6 md:py-8 lg:py-10;
+    @apply py-5 md:py-6 lg:py-8;
   }
 
   .surface-panel {
     @apply rounded-[14px] border border-border bg-card;
     box-shadow:
-      0 20px 36px -28px hsl(220 35% 2% / 0.95),
-      0 2px 8px -4px hsl(var(--primary) / 0.22);
+      0 18px 32px -26px hsl(220 35% 2% / 0.95),
+      0 3px 10px -4px hsl(220 26% 5% / 0.8);
   }
 
   .surface-panel-soft {
-    @apply rounded-[14px] border border-border bg-secondary/45;
+    @apply rounded-[14px] border border-border bg-secondary/65;
   }
 
   .surface-panel-hover {
@@ -118,11 +118,11 @@
   }
 
   .page-title {
-    @apply text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[2.65rem];
+    @apply text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[3rem];
   }
 
   .page-lead {
-    @apply max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-[1.05rem];
+    @apply max-w-3xl text-[1.05rem] leading-relaxed text-muted-foreground sm:text-[1.15rem];
   }
 
   .button-primary {
@@ -138,7 +138,7 @@
   }
 
   .field-label {
-    @apply block text-sm font-medium text-foreground;
+    @apply block text-[0.95rem] font-medium text-foreground;
   }
 
   .field-hint {
@@ -150,7 +150,7 @@
   }
 
   .form-input {
-    @apply block w-full rounded-[14px] border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground;
+    @apply block w-full rounded-[14px] border border-input bg-background px-4 py-3 text-[0.95rem] text-foreground placeholder:text-muted-foreground;
     @apply transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40;
   }
 

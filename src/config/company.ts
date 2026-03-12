@@ -1,6 +1,6 @@
 export const company = {
   legalName: "AllyExporter LLC",
-  displayName: "AllyExporter",
+  displayName: "AllyExporter LLC",
   domain: "allyexporter.com",
   phone: "(224) 532-9236",
   email: "contact@allyexporter.com",
@@ -24,45 +24,47 @@ export const company = {
     metaTitle: "AllyExporter LLC | Official Company Website",
     metaDescription:
       "Official website of AllyExporter LLC with company information, contact details, and legal pages.",
-    heroHeadline: "AllyExporter",
-    heroSubheadline: "Official company information and contact.",
+    heroHeadline: "AllyExporter LLC",
+    heroSubheadline: "Official company information, contact details, and legal pages.",
     heroActionLabel: "Contact",
     companyTitle: "Company",
     companyParagraphs: [
       "AllyExporter LLC is a private company based in Illinois, United States.",
       "This website provides official company information, contact details, and legal pages.",
+      "The company owns and manages brand assets and related business activities.",
     ],
-    aboutTitle: "About",
-    aboutText: "Official company presence for verification and contact.",
+    aboutTitle: "Website",
+    aboutText: "This website serves as a public company profile for verification and communication purposes.",
     contactCtaTitle: "Business contact",
-    contactCtaText: "For company inquiries, please use the contact page.",
+    contactCtaText: "For general company inquiries, please use the contact page.",
     contactCtaActionLabel: "Contact",
   },
 
   about: {
     title: "About",
     metaDescription: "Company profile and official website scope for AllyExporter LLC.",
-    intro: "Official company presence for verification and contact.",
+    intro: "Official company profile and contact reference.",
     summary: [
-      "AllyExporter LLC is a private company registered in Illinois, United States.",
-      "The website is maintained as an official source for company identity, contact details, and legal information.",
-      "The company owns and manages its brand assets and related business activities.",
+      "AllyExporter LLC is a private company based in Illinois, United States.",
+      "This website serves as an official online company presence.",
+      "It provides company information, contact details, and legal pages.",
+      "The company owns and manages brand assets and related business activities.",
     ],
   },
 
   contact: {
     title: "Contact",
     metaDescription: "Contact page for AllyExporter LLC.",
-    intro: "Use this form for company inquiries.",
+    intro: "Use this page for general company inquiries. Please submit your message using the form below.",
   },
 
   privacy: {
-    title: "Privacy",
+    title: "Privacy Policy",
     metaDescription: "Privacy information for visitors using the AllyExporter website.",
   },
 
   terms: {
-    title: "Terms",
+    title: "Terms of Use",
     metaDescription: "Terms for using the AllyExporter website.",
   },
 

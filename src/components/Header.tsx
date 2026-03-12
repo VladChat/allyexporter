@@ -1,8 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { company } from "@/config/company";
-import { Menu, Triangle, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import BrandMark from "./BrandMark";
 
 const navItems = [
   { label: company.nav.home, to: "/" },
@@ -26,7 +27,7 @@ const Header = () => {
           className="inline-flex min-h-11 items-center gap-3 rounded-[14px] px-1 text-foreground hover:text-primary"
         >
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-[14px] border border-primary/40 bg-primary/10 text-primary">
-            <Triangle className="h-4 w-4" aria-hidden="true" />
+            <BrandMark className="h-4 w-4" />
           </span>
           <span className="text-sm font-semibold tracking-tight sm:text-base">{company.displayName}</span>
         </Link>

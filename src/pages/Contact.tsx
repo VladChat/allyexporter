@@ -81,18 +81,18 @@ const Contact = () => {
             <p className="page-lead">{company.contact.intro}</p>
           </div>
 
-          <div className="mt-8 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="mt-7 grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
             <aside className="surface-panel p-6 sm:p-7">
-              <h2 className="text-lg font-semibold tracking-tight text-foreground">Company channels</h2>
+              <h2 className="text-xl font-semibold tracking-tight text-foreground">Company information</h2>
 
-              <ul className="mt-5 space-y-5">
+              <ul className="mt-5 space-y-4">
                 <li className="flex items-start gap-3">
                   <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                   <div>
                     <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Email</p>
                     <a
                       href={`mailto:${company.email}`}
-                      className="mt-1 inline-block break-all text-sm font-medium text-foreground hover:text-primary"
+                      className="mt-1 inline-block break-all text-base font-medium text-foreground hover:text-primary"
                     >
                       {company.email}
                     </a>
@@ -104,7 +104,7 @@ const Contact = () => {
                     <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Phone</p>
                     <a
                       href={`tel:${company.phone}`}
-                      className="mt-1 inline-block text-sm font-medium text-foreground hover:text-primary"
+                      className="mt-1 inline-block text-base font-medium text-foreground hover:text-primary"
                     >
                       {company.phone}
                     </a>
@@ -114,31 +114,31 @@ const Contact = () => {
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                   <div>
                     <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Address</p>
-                    <p className="mt-1 text-sm font-medium text-foreground">{company.fullAddress}</p>
+                    <p className="mt-1 text-base font-medium text-foreground">{company.fullAddress}</p>
                   </div>
                 </li>
               </ul>
             </aside>
 
             <form onSubmit={handleSubmit} noValidate aria-busy={status === "loading"} className="surface-panel p-6 sm:p-7">
-              <h2 className="flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground">
+              <h2 className="flex items-center gap-2 text-xl font-semibold tracking-tight text-foreground">
                 <MessageSquareText className="h-5 w-5 text-primary" aria-hidden="true" />
-                Send message
+                Contact form
               </h2>
 
               {status === "success" && (
                 <div role="status" aria-live="polite" className="status-banner status-banner-success mt-6">
-                  <strong className="font-semibold">Message sent.</strong> Thank you for contacting us.
+                  Message sent. Thank you for contacting us.
                 </div>
               )}
 
               {status === "error" && (
                 <div role="alert" className="status-banner status-banner-error mt-6">
-                  <strong className="font-semibold">Message not sent.</strong> Please try again later.
+                  Message not sent. Please try again later.
                 </div>
               )}
 
-              <div className="mt-6 space-y-5">
+              <div className="mt-6 space-y-4">
                 <div className="field-group">
                   <label htmlFor={fieldMeta.name.id} className="field-label">
                     Name
@@ -257,7 +257,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="button-primary mt-8 w-full disabled:cursor-not-allowed disabled:opacity-70"
+                className="button-primary mt-7 w-full disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === "loading" ? "Sending..." : "Send message"}
               </button>

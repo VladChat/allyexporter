@@ -11,7 +11,9 @@ const Terms = () => (
         <div className="max-w-3xl space-y-4">
           <p className="eyebrow">Legal</p>
           <h1 className="page-title">{company.terms.title}</h1>
-          <p className="page-lead">These terms describe the basic conditions for using this website.</p>
+          <p className="page-lead">
+            This page describes the basic terms for using this website and its public company information.
+          </p>
         </div>
 
         <article className="surface-panel legal-content mt-8 p-6 sm:p-8 md:p-10">

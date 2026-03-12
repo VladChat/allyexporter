@@ -15,7 +15,7 @@ const Privacy = () => (
           <p className="eyebrow">Legal</p>
           <h1 className="page-title">{company.privacy.title}</h1>
           <p className="page-lead">
-            This page explains how information is handled when you use the AllyExporter website.
+            This page explains how information submitted through this website may be collected and used.
           </p>
         </div>
 
