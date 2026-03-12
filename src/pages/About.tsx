@@ -12,7 +12,7 @@ const About = () => (
     <section className="section-space">
       <div className="site-container">
         <div className="max-w-3xl space-y-4">
-          <p className="eyebrow">Company Profile</p>
+          <p className="eyebrow">About</p>
           <h1 className="page-title">{company.about.title}</h1>
           <p className="page-lead">{company.about.intro}</p>
         </div>
@@ -21,14 +21,13 @@ const About = () => (
 
     <section className="section-space section-divider">
       <div className="site-container">
-        <div className="grid gap-4 md:grid-cols-3">
-          {company.about.sections.map((section) => (
-            <article key={section.title} className="surface-panel p-6">
-              <h2 className="text-lg font-semibold tracking-tight text-foreground">{section.title}</h2>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">{section.description}</p>
-            </article>
+        <article className="surface-panel space-y-4 p-6 sm:p-8">
+          {company.about.summary.map((line) => (
+            <p key={line} className="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+              {line}
+            </p>
           ))}
-        </div>
+        </article>
       </div>
     </section>
   </Layout>

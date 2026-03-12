@@ -6,7 +6,7 @@ const Footer = () => (
     <div className="site-container section-space-compact">
       <div className="flex flex-col gap-4 py-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1">
-          <p className="text-sm font-semibold tracking-tight text-foreground">{company.displayName}</p>
+          <p className="text-sm font-semibold tracking-tight text-foreground">{company.legalName}</p>
           <p className="text-xs text-muted-foreground">{company.footer.copyright}</p>
         </div>
 

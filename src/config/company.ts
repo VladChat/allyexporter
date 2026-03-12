@@ -21,62 +21,39 @@ export const company = {
   },
 
   home: {
-    metaTitle: "AllyExporter | International Sourcing and Export Operations",
+    metaTitle: "AllyExporter LLC | Official Company Website",
     metaDescription:
-      "AllyExporter LLC is a U.S.-based company focused on product sourcing, export logistics, and direct business partnerships.",
-    headline: "AllyExporter",
-    subheadline: "International product sourcing and export operations.",
-    primaryActionLabel: "Contact",
+      "Official website of AllyExporter LLC with company information, contact details, and legal pages.",
+    heroHeadline: "AllyExporter",
+    heroSubheadline: "Official company information and contact.",
+    heroActionLabel: "Contact",
     companyTitle: "Company",
     companyParagraphs: [
-      "AllyExporter LLC is based in Illinois, United States, and operates as a private company focused on cross-border trade activity.",
-      "The company manages product sourcing and export coordination for business clients through direct communication and operational planning.",
+      "AllyExporter LLC is a private company based in Illinois, United States.",
+      "This website provides official company information, contact details, and legal pages.",
     ],
-    operationsTitle: "Operations",
-    operations: [
-      {
-        title: "Product sourcing",
-        description: "Supplier review, product matching, and purchase coordination based on client requirements.",
-      },
-      {
-        title: "Export logistics",
-        description: "Shipment preparation, documentation support, and routing coordination for international delivery.",
-      },
-      {
-        title: "Direct partnerships",
-        description: "Structured communication between the company, suppliers, and buyers through defined channels.",
-      },
-    ],
-    contactCtaTitle: "Business inquiries",
-    contactCtaDescription: "Use the contact page for sourcing requests or export coordination.",
+    aboutTitle: "About",
+    aboutText: "Official company presence for verification and contact.",
+    contactCtaTitle: "Business contact",
+    contactCtaText: "For company inquiries, please use the contact page.",
     contactCtaActionLabel: "Contact",
   },
 
   about: {
     title: "About",
-    metaDescription: "Company profile of AllyExporter LLC, including scope of activity and operating approach.",
-    intro:
-      "AllyExporter LLC is a U.S. company that supports business clients with international sourcing and export-related operations.",
-    sections: [
-      {
-        title: "Who we are",
-        description: "A registered Illinois company focused on practical cross-border trade execution.",
-      },
-      {
-        title: "What we do",
-        description: "We coordinate sourcing, supplier communication, and export movement for selected product categories.",
-      },
-      {
-        title: "How we operate",
-        description: "Requests are handled through direct communication, clear scope definition, and step-by-step coordination.",
-      },
+    metaDescription: "Company profile and official website scope for AllyExporter LLC.",
+    intro: "Official company presence for verification and contact.",
+    summary: [
+      "AllyExporter LLC is a private company registered in Illinois, United States.",
+      "The website is maintained as an official source for company identity, contact details, and legal information.",
+      "The company owns and manages its brand assets and related business activities.",
     ],
   },
 
   contact: {
     title: "Contact",
-    metaDescription: "Contact AllyExporter LLC for sourcing and export communication.",
-    intro: "Use the form on this page for business communication. Messages are reviewed by the company team.",
+    metaDescription: "Contact page for AllyExporter LLC.",
+    intro: "Use this form for company inquiries.",
   },
 
   privacy: {
