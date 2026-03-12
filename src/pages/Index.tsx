@@ -122,18 +122,30 @@ const Index = () => {
 
       <section id="about" className="section-space section-divider">
         <div className="site-container">
-          <article className="surface-panel p-6 sm:p-8">
-            <p className="eyebrow">{company.home.companyTitle}</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{company.home.aboutTitle}</h2>
-            <p className="mt-5 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">{company.home.aboutText}</p>
-            <div className="mt-5 space-y-4">
-              {company.home.aboutParagraphs.map((paragraph) => (
-                <p key={paragraph} className="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </article>
+          <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+            <article className="surface-panel p-6 sm:p-8">
+              <p className="eyebrow">{company.home.companyTitle}</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{company.home.aboutTitle}</h2>
+              <p className="mt-5 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">{company.home.aboutText}</p>
+              <div className="mt-5 space-y-4">
+                {company.home.aboutParagraphs.map((paragraph) => (
+                  <p key={paragraph} className="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </article>
+
+            <aside className="surface-panel relative isolate min-h-[280px] overflow-hidden p-0">
+              <img
+                src={chicagoSkyline}
+                alt="City skyline"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0f1720]/60 via-[#0f1720]/20 to-[#0f1720]/12" />
+            </aside>
+          </div>
         </div>
       </section>
 
@@ -249,7 +261,7 @@ const Index = () => {
               </button>
             </form>
 
-            <aside>
+            <aside className="space-y-4">
               <article className="surface-panel p-6 sm:p-7">
                 <h3 className="text-xl font-semibold tracking-tight text-foreground">Official contact details</h3>
                 <ul className="mt-5 space-y-4">
@@ -279,6 +291,16 @@ const Index = () => {
                     </div>
                   </li>
                 </ul>
+              </article>
+
+              <article className="surface-panel relative isolate min-h-[250px] overflow-hidden p-0">
+                <img
+                  src={chicagoSkyline}
+                  alt="Business district skyline"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0f1720]/68 via-[#0f1720]/22 to-[#0f1720]/12" />
               </article>
             </aside>
           </div>
