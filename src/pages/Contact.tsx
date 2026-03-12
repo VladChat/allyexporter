@@ -5,6 +5,7 @@ import PageMeta from "@/components/PageMeta";
 import { Mail, MapPin, MessageSquareText, Phone } from "lucide-react";
 import { z } from "zod";
 import { submitContactMessage } from "@/services/contactService";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Full name is required").max(100),
@@ -31,6 +32,7 @@ const Contact = () => {
   const [form, setForm] = useState<FormData>({ name: "", email: "", subject: "", message: "" });
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const { settings } = useSiteSettings();
 
   const handleChange = (field: keyof FormData, value: string) => {
     setForm((f) => ({ ...f, [field]: value }));
@@ -54,7 +56,12 @@ const Contact = () => {
     setErrors({});
     setStatus("loading");
     try {
-      const submitResult = await submitContactMessage(result.data);
+      const submitResult = await submitContactMessage({
+        name: result.data.name,
+        email: result.data.email,
+        subject: result.data.subject,
+        message: result.data.message,
+      });
       if (!submitResult.success) {
         setStatus("error");
         return;
@@ -91,10 +98,10 @@ const Contact = () => {
                   <div>
                     <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Email</p>
                     <a
-                      href={`mailto:${company.email}`}
+                      href={`mailto:${settings.email}`}
                       className="mt-1 inline-block break-all text-base font-medium text-foreground hover:text-primary"
                     >
-                      {company.email}
+                      {settings.email}
                     </a>
                   </div>
                 </li>
@@ -103,10 +110,10 @@ const Contact = () => {
                   <div>
                     <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Phone</p>
                     <a
-                      href={`tel:${company.phone}`}
+                      href={`tel:${settings.phone}`}
                       className="mt-1 inline-block text-base font-medium text-foreground hover:text-primary"
                     >
-                      {company.phone}
+                      {settings.phone}
                     </a>
                   </div>
                 </li>
@@ -114,7 +121,7 @@ const Contact = () => {
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                   <div>
                     <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Address</p>
-                    <p className="mt-1 text-base font-medium text-foreground">{company.fullAddress}</p>
+                    <p className="mt-1 text-base font-medium text-foreground">{settings.address}</p>
                   </div>
                 </li>
               </ul>

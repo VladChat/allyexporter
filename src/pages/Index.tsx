@@ -6,23 +6,7 @@ import chicagoSkyline from "@/assets/chicago-skyline.jpg";
 import { Mail, MapPin, MessageSquareText, Phone } from "lucide-react";
 import { z } from "zod";
 import { submitContactMessage } from "@/services/contactService";
-
-const organizationStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: company.legalName,
-  url: `https://${company.domain}`,
-  email: company.email,
-  telephone: company.phone,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: company.addressLine1,
-    addressLocality: company.city,
-    addressRegion: company.state,
-    postalCode: company.zip,
-    addressCountry: company.country,
-  },
-};
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Full name is required").max(100),
@@ -39,6 +23,21 @@ const Index = () => {
   const [form, setForm] = useState<FormData>({ name: "", email: "", subject: "", message: "" });
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const { settings } = useSiteSettings();
+
+  const organizationStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: company.legalName,
+    url: `https://${company.domain}`,
+    email: settings.email,
+    telephone: settings.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: settings.address,
+      addressCountry: company.country,
+    },
+  };
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -66,7 +65,12 @@ const Index = () => {
     setErrors({});
     setStatus("loading");
     try {
-      const submitResult = await submitContactMessage(result.data);
+      const submitResult = await submitContactMessage({
+        name: result.data.name,
+        email: result.data.email,
+        subject: result.data.subject,
+        message: result.data.message,
+      });
       if (!submitResult.success) {
         setStatus("error");
         return;
@@ -269,8 +273,8 @@ const Index = () => {
                     <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                     <div>
                       <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Email</p>
-                      <a href={`mailto:${company.email}`} className="mt-1 inline-block text-base font-medium text-foreground hover:text-primary">
-                        {company.email}
+                      <a href={`mailto:${settings.email}`} className="mt-1 inline-block text-base font-medium text-foreground hover:text-primary">
+                        {settings.email}
                       </a>
                     </div>
                   </li>
@@ -278,8 +282,8 @@ const Index = () => {
                     <Phone className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                     <div>
                       <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Phone</p>
-                      <a href={`tel:${company.phone}`} className="mt-1 inline-block text-base font-medium text-foreground hover:text-primary">
-                        {company.phone}
+                      <a href={`tel:${settings.phone}`} className="mt-1 inline-block text-base font-medium text-foreground hover:text-primary">
+                        {settings.phone}
                       </a>
                     </div>
                   </li>
@@ -287,7 +291,7 @@ const Index = () => {
                     <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                     <div>
                       <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Address</p>
-                      <p className="mt-1 text-base font-medium text-foreground">{company.fullAddress}</p>
+                      <p className="mt-1 text-base font-medium text-foreground">{settings.address}</p>
                     </div>
                   </li>
                 </ul>
