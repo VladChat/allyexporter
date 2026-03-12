@@ -17,7 +17,6 @@ export const company = {
   nav: {
     home: "Home",
     about: "About",
-    services: "Services",
     contact: "Contact",
   },
 
@@ -26,14 +25,8 @@ export const company = {
     metaDescription:
       "Official website of AllyExporter LLC with company information, contact details, and legal pages.",
     heroHeadline: "AllyExporter LLC",
-    heroSubheadline: "Official company profile, core services, and contact information for business communication.",
+    heroSubheadline: "Official company profile, contact details, and legal pages.",
     heroActionLabel: "Get in touch",
-    sectionNav: {
-      home: "Home",
-      about: "About",
-      services: "Services",
-      contact: "Contact",
-    },
     companyTitle: "Company",
     companyParagraphs: [
       "AllyExporter LLC is a private company based in Illinois, United States.",
@@ -42,31 +35,14 @@ export const company = {
     ],
     aboutTitle: "About us",
     aboutText:
-      "AllyExporter LLC maintains a clear and reliable online company presence for partners, clients, and business verification.",
+      "AllyExporter LLC is a private company based in Illinois, United States, and manages its own brands and related business assets.",
     aboutParagraphs: [
-      "We focus on building trusted business relationships and clear communication channels with stakeholders.",
-      "Our official website is designed to provide concise information, straightforward navigation, and dependable contact options.",
-      "This digital presence supports transparency and helps partners quickly access key company details.",
-    ],
-    servicesTitle: "Our services",
-    servicesIntro:
-      "We provide practical support capabilities for business operations, communication, and partner collaboration.",
-    services: [
-      {
-        title: "Consulting",
-        description: "Business-focused guidance for operational clarity and strategic decision support.",
-      },
-      {
-        title: "Solutions",
-        description: "Structured company solutions designed around reliability, communication, and execution.",
-      },
-      {
-        title: "Support",
-        description: "Responsive assistance for inquiries, coordination, and ongoing business interactions.",
-      },
+      "The website serves as an official source of company information for partners, clients, and verification needs.",
+      "It provides clear contact details and access to legal pages in a concise, easy-to-navigate format.",
+      "All published information is maintained to support transparent business communication.",
     ],
     contactCtaTitle: "Business contact",
-    contactCtaText: "For general company inquiries, use the form below or reach out using our official contact details.",
+    contactCtaText: "For general company inquiries, use the form below or our official contact details.",
     contactCtaActionLabel: "Send message",
   },
 
@@ -99,12 +75,8 @@ export const company = {
   },
 
   footer: {
-    tagline: "Official company information and communication channel.",
-    quickLinksLabel: "Quick links",
-    socialLabel: "Follow",
     privacyLabel: "Privacy",
     termsLabel: "Terms",
-    contactLabel: "Contact",
     copyright: `© ${new Date().getFullYear()} AllyExporter LLC`,
   },
 } as const;

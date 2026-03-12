@@ -3,7 +3,7 @@ import { company } from "@/config/company";
 import Layout from "@/components/Layout";
 import PageMeta from "@/components/PageMeta";
 import chicagoSkyline from "@/assets/chicago-skyline.jpg";
-import { Mail, MapPin, MessageSquareText, Phone, Send } from "lucide-react";
+import { Mail, MapPin, MessageSquareText, Phone } from "lucide-react";
 import { z } from "zod";
 import { submitContactMessage } from "@/services/contactService";
 
@@ -113,9 +113,6 @@ const Index = () => {
                   <button type="button" className="button-primary" onClick={() => scrollToSection("contact")}>
                     {company.home.heroActionLabel}
                   </button>
-                  <button type="button" className="button-secondary" onClick={() => scrollToSection("services")}>
-                    {company.nav.services}
-                  </button>
                 </div>
               </div>
             </div>
@@ -158,32 +155,6 @@ const Index = () => {
                 </div>
               </div>
             </aside>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" className="section-space section-divider">
-        <div className="site-container">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow">{company.nav.services}</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              {company.home.servicesTitle}
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base">{company.home.servicesIntro}</p>
-          </div>
-
-          <div className="mt-7 grid gap-4 md:grid-cols-3">
-            {company.home.services.map((service, index) => (
-              <article key={service.title} className="surface-panel surface-panel-hover p-6 sm:p-7">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-[14px] border border-primary/40 bg-primary/10 text-primary">
-                  {index === 0 && <Send className="h-5 w-5" aria-hidden="true" />}
-                  {index === 1 && <Mail className="h-5 w-5" aria-hidden="true" />}
-                  {index === 2 && <Phone className="h-5 w-5" aria-hidden="true" />}
-                </span>
-                <h3 className="mt-5 text-xl font-semibold tracking-tight text-foreground">{service.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">{service.description}</p>
-              </article>
-            ))}
           </div>
         </div>
       </section>

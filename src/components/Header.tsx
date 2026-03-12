@@ -8,7 +8,6 @@ import BrandMark from "./BrandMark";
 const navItems = [
   { label: company.nav.home, id: "home" },
   { label: company.nav.about, id: "about" },
-  { label: company.nav.services, id: "services" },
   { label: company.nav.contact, id: "contact" },
 ];
 
