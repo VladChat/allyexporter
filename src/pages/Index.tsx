@@ -122,40 +122,18 @@ const Index = () => {
 
       <section id="about" className="section-space section-divider">
         <div className="site-container">
-          <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-            <article className="surface-panel p-6 sm:p-8">
-              <p className="eyebrow">{company.home.companyTitle}</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{company.home.aboutTitle}</h2>
-              <p className="mt-5 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">{company.home.aboutText}</p>
-              <div className="mt-5 space-y-4">
-                {company.home.aboutParagraphs.map((paragraph) => (
-                  <p key={paragraph} className="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </article>
-
-            <aside className="surface-panel relative isolate overflow-hidden">
-              <img
-                src={chicagoSkyline}
-                alt="City skyline representing company presence"
-                className="absolute inset-0 h-full w-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0f1720]/76 via-[#0f1720]/44 to-[#0f1720]/16" />
-              <div className="relative z-10 flex h-full min-h-[280px] flex-col justify-end p-6 sm:p-8">
-                <h3 className="text-2xl font-semibold tracking-tight text-foreground">{company.home.companyTitle}</h3>
-                <div className="mt-4 space-y-3">
-                  {company.home.companyParagraphs.map((paragraph) => (
-                    <p key={paragraph} className="text-sm leading-6 text-[#d5dee7]">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            </aside>
-          </div>
+          <article className="surface-panel p-6 sm:p-8">
+            <p className="eyebrow">{company.home.companyTitle}</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{company.home.aboutTitle}</h2>
+            <p className="mt-5 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">{company.home.aboutText}</p>
+            <div className="mt-5 space-y-4">
+              {company.home.aboutParagraphs.map((paragraph) => (
+                <p key={paragraph} className="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </article>
         </div>
       </section>
 
@@ -271,7 +249,7 @@ const Index = () => {
               </button>
             </form>
 
-            <aside className="space-y-4">
+            <aside>
               <article className="surface-panel p-6 sm:p-7">
                 <h3 className="text-xl font-semibold tracking-tight text-foreground">Official contact details</h3>
                 <ul className="mt-5 space-y-4">
@@ -301,22 +279,6 @@ const Index = () => {
                     </div>
                   </li>
                 </ul>
-              </article>
-
-              <article className="surface-panel relative isolate min-h-[250px] overflow-hidden p-0">
-                <img
-                  src={chicagoSkyline}
-                  alt="Business district skyline"
-                  className="absolute inset-0 h-full w-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f1720]/78 via-[#0f1720]/42 to-[#0f1720]/12" />
-                <div className="relative z-10 flex h-full flex-col justify-end p-6">
-                  <h4 className="text-lg font-semibold tracking-tight text-foreground">Reliable business communication</h4>
-                  <p className="mt-2 text-sm leading-6 text-[#d5dee7]">
-                    We review all submitted inquiries and respond through official company channels.
-                  </p>
-                </div>
               </article>
             </aside>
           </div>
