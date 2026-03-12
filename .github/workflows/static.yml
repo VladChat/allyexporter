@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -38,8 +39,6 @@ jobs:
       - name: Add SPA 404 fallback
         run: |
           if [ -f ./dist/index.html ]; then cp ./dist/index.html ./dist/404.html; fi
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
