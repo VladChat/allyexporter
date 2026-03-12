@@ -77,6 +77,6 @@ export const company = {
   footer: {
     privacyLabel: "Privacy",
     termsLabel: "Terms",
-    copyright: `© ${new Date().getFullYear()} AllyExporter LLC`,
+    copyright: `© 2011–${new Date().getFullYear()} AllyExporter LLC`,
   },
 } as const;

@@ -3,7 +3,6 @@ import { company } from "@/config/company";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import BrandMark from "./BrandMark";
 
 const navItems = [
   { label: company.nav.home, id: "home" },
@@ -47,12 +46,15 @@ const Header = () => {
       <div className="site-container flex h-[72px] items-center justify-between">
         <Link
           to="/"
-          className="inline-flex min-h-11 items-center gap-3 rounded-[14px] px-1 text-foreground hover:text-primary"
+          className="inline-flex min-h-11 items-center rounded-[14px] px-1 hover:opacity-90"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-[14px] border border-primary/40 bg-primary/10 text-primary">
-            <BrandMark className="h-4 w-4" />
-          </span>
-          <span className="text-sm font-semibold tracking-tight sm:text-base">{company.displayName}</span>
+          <img
+            src="/AllyExporter-logo.png"
+            alt={company.displayName}
+            className="h-[22px] w-auto sm:h-[26px] lg:h-[30px]"
+            loading="eager"
+            decoding="async"
+          />
         </Link>
 
         <nav aria-label="Main navigation" className="hidden items-center gap-2 md:flex">
