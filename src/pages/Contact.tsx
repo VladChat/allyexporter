@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { company } from "@/config/company";
 import Layout from "@/components/Layout";
 import PageMeta from "@/components/PageMeta";
-import { Mail, Phone, MapPin, MessageSquareText } from "lucide-react";
+import { Mail, MapPin, MessageSquareText, Phone } from "lucide-react";
 import { z } from "zod";
 import { submitContactMessage } from "@/services/contactService";
 
@@ -69,31 +69,31 @@ const Contact = () => {
   return (
     <Layout>
       <PageMeta
-        title={`${company.contact.title} - ${company.displayName}`}
+        title={`${company.contact.title} | ${company.displayName}`}
         description={company.contact.metaDescription}
       />
 
       <section className="section-space">
         <div className="site-container">
           <div className="max-w-3xl space-y-4">
-            <p className="eyebrow">Official Contact</p>
+            <p className="eyebrow">Contact</p>
             <h1 className="page-title">{company.contact.title}</h1>
-            <p className="page-lead">Use this form for public or business inquiries to {company.displayName}.</p>
+            <p className="page-lead">{company.contact.intro}</p>
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">
+          <div className="mt-8 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
             <aside className="surface-panel p-6 sm:p-7">
-              <h2 className="text-lg font-semibold text-foreground">Contact Details</h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                For written requests, the form on this page is the recommended channel.
-              </p>
+              <h2 className="text-lg font-semibold tracking-tight text-foreground">Company channels</h2>
 
-              <ul className="mt-6 space-y-5">
+              <ul className="mt-5 space-y-5">
                 <li className="flex items-start gap-3">
                   <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                   <div>
                     <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Email</p>
-                    <a href={`mailto:${company.email}`} className="mt-1 inline-block text-sm font-medium text-foreground hover:text-primary">
+                    <a
+                      href={`mailto:${company.email}`}
+                      className="mt-1 inline-block break-all text-sm font-medium text-foreground hover:text-primary"
+                    >
                       {company.email}
                     </a>
                   </div>
@@ -102,7 +102,10 @@ const Contact = () => {
                   <Phone className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                   <div>
                     <p className="text-xs uppercase tracking-[0.08em] text-muted-foreground">Phone</p>
-                    <a href={`tel:${company.phone}`} className="mt-1 inline-block text-sm font-medium text-foreground hover:text-primary">
+                    <a
+                      href={`tel:${company.phone}`}
+                      className="mt-1 inline-block text-sm font-medium text-foreground hover:text-primary"
+                    >
                       {company.phone}
                     </a>
                   </div>
@@ -118,9 +121,9 @@ const Contact = () => {
             </aside>
 
             <form onSubmit={handleSubmit} noValidate aria-busy={status === "loading"} className="surface-panel p-6 sm:p-7">
-              <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground">
+              <h2 className="flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground">
                 <MessageSquareText className="h-5 w-5 text-primary" aria-hidden="true" />
-                Send a Message
+                Send message
               </h2>
 
               {status === "success" && (
@@ -138,7 +141,7 @@ const Contact = () => {
               <div className="mt-6 space-y-5">
                 <div className="field-group">
                   <label htmlFor={fieldMeta.name.id} className="field-label">
-                    Full Name
+                    Name
                   </label>
                   <input
                     id={fieldMeta.name.id}
@@ -165,7 +168,7 @@ const Contact = () => {
 
                 <div className="field-group">
                   <label htmlFor={fieldMeta.email.id} className="field-label">
-                    Email Address
+                    Email
                   </label>
                   <input
                     id={fieldMeta.email.id}
@@ -181,7 +184,7 @@ const Contact = () => {
                     maxLength={255}
                   />
                   <p id={fieldMeta.email.hintId} className="field-hint">
-                    We will use this email address to respond.
+                    We will respond using this email address.
                   </p>
                   {errors.email && (
                     <p id={fieldMeta.email.errorId} className="field-error">
@@ -211,7 +214,7 @@ const Contact = () => {
                     maxLength={200}
                   />
                   <p id={fieldMeta.subject.hintId} className="field-hint">
-                    Keep the subject brief and specific.
+                    Keep this line short.
                   </p>
                   {errors.subject && (
                     <p id={fieldMeta.subject.errorId} className="field-error">
@@ -241,7 +244,7 @@ const Contact = () => {
                     maxLength={5000}
                   />
                   <p id={fieldMeta.message.hintId} className="field-hint">
-                    Include the details needed for a useful response.
+                    Include enough detail for a reply.
                   </p>
                   {errors.message && (
                     <p id={fieldMeta.message.errorId} className="field-error">
@@ -254,9 +257,9 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="button-primary mt-7 w-full disabled:cursor-not-allowed disabled:opacity-70"
+                className="button-primary mt-8 w-full disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {status === "loading" ? "Sending..." : "Send Message"}
+                {status === "loading" ? "Sending..." : "Send message"}
               </button>
             </form>
           </div>

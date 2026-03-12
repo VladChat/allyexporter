@@ -5,52 +5,47 @@ import PageMeta from "@/components/PageMeta";
 const Privacy = () => (
   <Layout>
     <PageMeta
-      title={`${company.privacy.title} - ${company.displayName}`}
+      title={`${company.privacy.title} | ${company.displayName}`}
       description={company.privacy.metaDescription}
     />
 
     <section className="section-space">
-      <div className="site-container max-w-4xl">
+      <div className="site-container max-w-[860px]">
         <div className="max-w-3xl space-y-4">
           <p className="eyebrow">Legal</p>
           <h1 className="page-title">{company.privacy.title}</h1>
           <p className="page-lead">
-            This policy explains how {company.displayName} handles information received through this website.
+            This page explains how information is handled when you use the AllyExporter website.
           </p>
         </div>
 
-        <article className="surface-panel legal-content mt-8 p-6 sm:p-8">
-          <h2>Information We Collect</h2>
+        <article className="surface-panel legal-content mt-8 p-6 sm:p-8 md:p-10">
+          <h2>Information submitted by users</h2>
           <p>
-            We collect information you provide voluntarily through the contact form, including name, email, subject,
-            and message content.
+            When you use the contact form, we collect the details you enter: name, email address, subject, and
+            message.
           </p>
 
-          <h2>How We Use Information</h2>
-          <p>Submitted information is used only to review and respond to inquiries directed to the company.</p>
+          <h2>How information is used</h2>
+          <p>Submitted information is used to review and respond to your inquiry.</p>
 
-          <h2>Cookies and Tracking</h2>
+          <h2>Storage and processing</h2>
           <p>
-            This website does not use analytics or advertising trackers. Basic technical cookies may be used only when
-            needed for site operation.
+            Contact form submissions are processed through website infrastructure providers used by AllyExporter LLC.
           </p>
 
-          <h2>Third-Party Infrastructure</h2>
+          <h2>Cookies and tracking</h2>
           <p>
-            Website hosting and form-processing infrastructure may process standard request data, such as IP address,
-            as part of normal technical operations.
+            This website does not use advertising trackers. Basic technical cookies may be present only where required
+            for normal site operation.
           </p>
 
-          <h2>Policy Updates</h2>
-          <p>This policy may be updated as needed. The latest version is published on this page.</p>
+          <h2>Changes</h2>
+          <p>Privacy information may be updated. The latest version is always published on this page.</p>
 
           <h2>Contact</h2>
           <p>
-            Questions about this policy can be sent to{" "}
-            <a href={`mailto:${company.email}`} className="text-primary hover:underline">
-              {company.email}
-            </a>
-            .
+            Questions can be sent to <a href={`mailto:${company.email}`} className="text-primary hover:underline">{company.email}</a>.
           </p>
         </article>
       </div>

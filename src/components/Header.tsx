@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { company } from "@/config/company";
-import { Menu, X } from "lucide-react";
+import { Menu, Triangle, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -19,19 +19,19 @@ const Header = () => {
   }, [location.pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/90 backdrop-blur-sm">
-      <div className="site-container flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 border-b border-border/85 bg-background/90 backdrop-blur-md">
+      <div className="site-container flex h-[72px] items-center justify-between">
         <Link
           to="/"
-          className="inline-flex min-h-11 items-center gap-3 rounded-md px-1 text-foreground hover:text-primary"
+          className="inline-flex min-h-11 items-center gap-3 rounded-[14px] px-1 text-foreground hover:text-primary"
         >
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-primary/40 bg-primary/10 text-xs font-bold text-primary">
-            AE
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-[14px] border border-primary/40 bg-primary/10 text-primary">
+            <Triangle className="h-4 w-4" aria-hidden="true" />
           </span>
           <span className="text-sm font-semibold tracking-tight sm:text-base">{company.displayName}</span>
         </Link>
 
-        <nav aria-label="Main navigation" className="hidden items-center gap-1 md:flex">
+        <nav aria-label="Main navigation" className="hidden items-center gap-2 md:flex">
           {navItems.map((item) => {
             const active = location.pathname === item.to;
             return (
@@ -40,10 +40,10 @@ const Header = () => {
                 to={item.to}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "inline-flex min-h-11 items-center rounded-md border px-4 text-sm font-medium transition-colors",
+                  "inline-flex min-h-11 items-center rounded-[14px] border px-4 text-sm font-medium transition-colors",
                   active
                     ? "border-primary/55 bg-primary/10 text-primary"
-                    : "border-border/90 text-muted-foreground hover:border-primary/35 hover:text-foreground",
+                    : "border-transparent text-muted-foreground hover:border-border hover:text-foreground",
                 )}
               >
                 {item.label}
@@ -55,7 +55,7 @@ const Header = () => {
         <button
           type="button"
           onClick={() => setOpen((prev) => !prev)}
-          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-border/90 text-muted-foreground hover:border-primary/35 hover:text-foreground md:hidden"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-[14px] border border-border bg-card text-muted-foreground hover:border-primary/35 hover:text-foreground md:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={open}
           aria-controls="mobile-navigation"
@@ -65,11 +65,7 @@ const Header = () => {
       </div>
 
       {open && (
-        <nav
-          id="mobile-navigation"
-          aria-label="Mobile navigation"
-          className="border-t border-border/80 bg-background md:hidden"
-        >
+        <nav id="mobile-navigation" aria-label="Mobile navigation" className="section-divider bg-background md:hidden">
           <div className="site-container grid gap-2 py-3">
             {navItems.map((item) => {
               const active = location.pathname === item.to;
@@ -79,7 +75,7 @@ const Header = () => {
                   to={item.to}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "inline-flex min-h-11 items-center rounded-md border px-4 text-sm font-medium transition-colors",
+                    "inline-flex min-h-11 items-center rounded-[14px] border px-4 text-sm font-medium transition-colors",
                     active
                       ? "border-primary/55 bg-primary/10 text-primary"
                       : "border-border/90 text-muted-foreground hover:border-primary/35 hover:text-foreground",
