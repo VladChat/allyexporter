@@ -1,6 +1,9 @@
 -- AllyExporter admin panel SQL setup
 -- Run in Supabase SQL Editor
 
+-- 0) Ensure UUID helpers are available for default gen_random_uuid().
+create extension if not exists pgcrypto;
+
 -- 1) Ensure contact_messages has primary key + created_at for admin listing/deletion.
 alter table if exists public.contact_messages
   add column if not exists id uuid primary key default gen_random_uuid();
@@ -17,9 +20,30 @@ create table if not exists public.site_settings (
   updated_at timestamptz not null default now()
 );
 
+-- 2b) Backfill updated_at column if site_settings already existed without it.
+alter table if exists public.site_settings
+  add column if not exists updated_at timestamptz not null default now();
+
 -- 3) Enable RLS.
 alter table public.contact_messages enable row level security;
 alter table public.site_settings enable row level security;
+
+-- 3b) Helper function for admin-only checks based on auth.users.
+-- This is more reliable than depending on JWT claim shape.
+create or replace function public.is_admin_user()
+returns boolean
+language sql
+stable
+security definer
+set search_path = public, auth
+as $$
+  select exists (
+    select 1
+    from auth.users u
+    where u.id = auth.uid()
+      and lower(u.email) = 'allyexporter@gmail.com'
+  );
+$$;
 
 -- 4) Remove old potentially conflicting policies (safe to rerun).
 drop policy if exists "contact_messages_insert_public" on public.contact_messages;
@@ -44,14 +68,14 @@ create policy "contact_messages_select_admin_only"
   on public.contact_messages
   for select
   to authenticated
-  using (lower(auth.jwt() ->> 'email') = 'allyexporter@gmail.com');
+  using (public.is_admin_user());
 
 -- Only admin email can delete messages.
 create policy "contact_messages_delete_admin_only"
   on public.contact_messages
   for delete
   to authenticated
-  using (lower(auth.jwt() ->> 'email') = 'allyexporter@gmail.com');
+  using (public.is_admin_user());
 
 -- 6) site_settings policies
 -- Public read allowed because these values are shown on the public website.
@@ -66,22 +90,25 @@ create policy "site_settings_insert_admin_only"
   on public.site_settings
   for insert
   to authenticated
-  with check (lower(auth.jwt() ->> 'email') = 'allyexporter@gmail.com');
+  with check (public.is_admin_user());
 
 create policy "site_settings_update_admin_only"
   on public.site_settings
   for update
   to authenticated
-  using (lower(auth.jwt() ->> 'email') = 'allyexporter@gmail.com')
-  with check (lower(auth.jwt() ->> 'email') = 'allyexporter@gmail.com');
+  using (public.is_admin_user())
+  with check (public.is_admin_user());
 
 create policy "site_settings_delete_admin_only"
   on public.site_settings
   for delete
   to authenticated
-  using (lower(auth.jwt() ->> 'email') = 'allyexporter@gmail.com');
+  using (public.is_admin_user());
 
 -- 7) Seed single settings row if table empty.
 insert into public.site_settings (phone, email, address)
 select '(224) 532-9236', 'contact@allyexporter.com', '130 Old Oak Drive, Apt 247, Buffalo Grove, IL 60089, USA'
 where not exists (select 1 from public.site_settings);
+
+-- 8) Refresh PostgREST schema cache so new/updated tables are immediately visible.
+notify pgrst, 'reload schema';

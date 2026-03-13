@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { company } from "@/config/company";
-import { ADMIN_EMAIL, isAllowedAdminEmail, supabaseClient } from "@/lib/supabaseClient";
+import { isAllowedAdminEmail, supabaseClient } from "@/lib/supabaseClient";
 
 type AdminLoginProps = {
   sessionReady: boolean;
@@ -16,7 +16,7 @@ const AdminLogin = ({
   isAllowedAdmin,
   onAuthChanged,
 }: AdminLoginProps) => {
-  const [email, setEmail] = useState(ADMIN_EMAIL);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [errorText, setErrorText] = useState<string>("");

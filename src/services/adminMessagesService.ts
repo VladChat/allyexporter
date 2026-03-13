@@ -12,7 +12,7 @@ export type ContactMessage = {
 export async function getContactMessages(): Promise<ContactMessage[]> {
   const { data, error } = await supabaseClient
     .from("contact_messages")
-    .select("id, name, email, subject, message, created_at")
+    .select("*")
     .order("created_at", { ascending: false });
 
   if (error) throw new Error(error.message);

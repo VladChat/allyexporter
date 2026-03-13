@@ -24,8 +24,62 @@ This script:
 - ensures `contact_messages` has `id` and `created_at`
 - creates `site_settings`
 - enables RLS
+- creates helper function `public.is_admin_user()` for stable admin checks
 - adds policies so only `allyexporter@gmail.com` can read/delete messages and update settings
 - keeps anonymous insert for contact form submissions
+
+If you see this error in the admin panel:
+
+- `Could not find table public.site_settings in the schema cache`
+
+or this error:
+
+- `Could not find the 'updated_at' column of 'site_settings' in the schema cache`
+
+or this error variant:
+
+- `column site_settings.updated_at does not exist`
+
+run the SQL script again in the **same Supabase project** and make sure the final line executes:
+
+- `notify pgrst, 'reload schema';`
+
+If `site_settings` already existed before this setup, ensure this migration is applied:
+
+```sql
+alter table if exists public.site_settings
+  add column if not exists updated_at timestamptz not null default now();
+
+notify pgrst, 'reload schema';
+```
+
+If admin dashboard shows:
+
+- `No messages found.`
+
+even after sending contact form submissions, it usually means `contact_messages` RLS policies are missing/outdated in this project.
+
+1. Rerun `docs/admin-panel-supabase.sql` in the **same Supabase project**.
+2. Sign out and sign in again as `allyexporter@gmail.com`.
+3. Verify rows and policies in SQL Editor:
+
+```sql
+select id, created_at, name, email, subject
+from public.contact_messages
+order by created_at desc
+limit 20;
+
+select policyname, cmd, qual, with_check
+from pg_policies
+where schemaname = 'public'
+  and tablename = 'contact_messages'
+order by policyname;
+```
+
+Why this can happen even when rows exist:
+
+- old policies may depend on JWT claims that are not present in your current token shape
+- latest setup uses `public.is_admin_user()` (checks `auth.users` by `auth.uid()`) to avoid JWT-claim mismatch
 
 ## 3) Confirm environment variables
 
@@ -33,6 +87,10 @@ Project requires:
 
 - `VITE_SUPABASE_URL`
 - `VITE_SUPABASE_ANON_KEY`
+
+For this project, `VITE_SUPABASE_URL` must be:
+
+- `https://lwlbjrwvijgndidqxcqp.supabase.co`
 
 These are used for both public contact form write and admin auth/data operations.
 

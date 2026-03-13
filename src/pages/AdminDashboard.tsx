@@ -16,6 +16,7 @@ const AdminDashboard = () => {
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [messagesLoading, setMessagesLoading] = useState(true);
   const [messagesError, setMessagesError] = useState<string>("");
+  const [deletingMessageId, setDeletingMessageId] = useState<string | null>(null);
 
   const [settingsId, setSettingsId] = useState<string | null>(null);
   const [settingsForm, setSettingsForm] = useState<SiteSettingsUpdateInput>(fallbackSiteSettings);
@@ -66,11 +67,16 @@ const AdminDashboard = () => {
   }, []);
 
   const handleDeleteMessage = async (messageId: string) => {
+    setDeletingMessageId(messageId);
+    setMessagesError("");
+
     try {
       await deleteContactMessage(messageId);
       setMessages((prev) => prev.filter((item) => item.id !== messageId));
     } catch (error) {
       setMessagesError(error instanceof Error ? error.message : "Delete failed.");
+    } finally {
+      setDeletingMessageId(null);
     }
   };
 
@@ -124,14 +130,34 @@ const AdminDashboard = () => {
         </section>
 
         <section className="surface-panel p-6 sm:p-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Messages</h2>
-          <p className="mt-2 text-sm leading-7 text-muted-foreground">Manage contact form submissions.</p>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight text-foreground">Messages</h2>
+              <p className="mt-2 text-sm leading-7 text-muted-foreground">Manage contact form submissions.</p>
+            </div>
+
+            <button
+              type="button"
+              className="button-secondary"
+              onClick={() => void loadMessages()}
+              disabled={messagesLoading}
+            >
+              {messagesLoading ? "Refreshing..." : "Refresh"}
+            </button>
+          </div>
 
           {messagesLoading ? <p className="mt-5 text-sm text-muted-foreground">Loading messages...</p> : null}
           {messagesError ? <p className="field-error mt-5">Error: {messagesError}</p> : null}
 
           {!messagesLoading && !messagesError && messages.length === 0 ? (
-            <p className="mt-5 text-sm text-muted-foreground">No messages found.</p>
+            <div className="mt-5 space-y-2">
+              <p className="text-sm text-muted-foreground">No messages found.</p>
+              <p className="text-xs text-muted-foreground">
+                If you recently submitted a contact form, click Refresh. If it is still empty, rerun{" "}
+                <code className="mx-1 rounded bg-muted px-1 py-0.5 text-xs">docs/admin-panel-supabase.sql</code>
+                {" "}in the same Supabase project to repair contact_messages RLS policies.
+              </p>
+            </div>
           ) : null}
 
           {!messagesLoading && messages.length > 0 ? (
@@ -154,8 +180,9 @@ const AdminDashboard = () => {
                       type="button"
                       className="button-secondary border-destructive/40 text-destructive hover:border-destructive"
                       onClick={() => void handleDeleteMessage(item.id)}
+                      disabled={deletingMessageId === item.id}
                     >
-                      Delete
+                      {deletingMessageId === item.id ? "Deleting..." : "Delete"}
                     </button>
                   </div>
 
