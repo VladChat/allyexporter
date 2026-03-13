@@ -1,6 +1,5 @@
 import { FormEvent, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { company } from "@/config/company";
 import { isAllowedAdminEmail, supabaseClient } from "@/lib/supabaseClient";
 
 type AdminLoginProps = {
@@ -60,9 +59,6 @@ const AdminLogin = ({
         <section className="surface-panel p-6 sm:p-8">
           <p className="eyebrow">Admin</p>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">Admin login</h1>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            Sign in to manage contact messages and website contact settings for {company.displayName}.
-          </p>
 
           <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-4" aria-busy={status === "loading"}>
             <div className="field-group">
