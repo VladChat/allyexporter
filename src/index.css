@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #0f1720;
+    --color-card: #151e29;
+    --color-border: #243041;
+    --color-accent: #4f8cff;
+    --color-text: #e6edf3;
+    --color-muted: #9aa7b5;
+
+    --background: 212 36% 9%;
+    --foreground: 210 25% 92%;
+
+    --card: 213 32% 13%;
+    --card-foreground: 210 25% 92%;
+
+    --popover: 213 32% 12%;
+    --popover-foreground: 210 25% 92%;
+
+    --primary: 219 100% 65%;
+    --primary-foreground: 210 25% 92%;
+
+    --secondary: 214 31% 15%;
+    --secondary-foreground: 210 25% 92%;
+
+    --muted: 214 28% 16%;
+    --muted-foreground: 211 17% 70%;
+
+    --accent: 216 29% 21%;
+    --accent-foreground: 210 25% 92%;
+
+    --destructive: 0 68% 56%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 216 29% 26%;
+    --input: 216 29% 26%;
+    --ring: 219 100% 65%;
+
+    --radius: 14px;
+
+    --sidebar-background: 212 36% 9%;
+    --sidebar-foreground: 210 25% 92%;
+    --sidebar-primary: 219 100% 65%;
+    --sidebar-primary-foreground: 210 25% 92%;
+    --sidebar-accent: 214 32% 14%;
+    --sidebar-accent-foreground: 210 25% 92%;
+    --sidebar-border: 216 29% 20%;
+    --sidebar-ring: 219 100% 65%;
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+    background-image:
+      radial-gradient(1000px 560px at 8% -8%, #1b2d47 0%, transparent 55%),
+      radial-gradient(760px 420px at 100% 0%, #13253c 0%, transparent 56%),
+      linear-gradient(180deg, #0f1720 0%, #101925 100%);
+    background-attachment: fixed;
+    min-width: 320px;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-[1100px] px-5 md:px-8;
+  }
+
+  .section-space {
+    @apply py-8 md:py-10 lg:py-12;
+  }
+
+  .section-space-compact {
+    @apply py-5 md:py-6 lg:py-8;
+  }
+
+  .surface-panel {
+    @apply rounded-[14px] border border-border bg-card;
+    box-shadow:
+      0 18px 32px -26px hsl(220 35% 2% / 0.95),
+      0 3px 10px -4px hsl(220 26% 5% / 0.8);
+  }
+
+  .surface-panel-soft {
+    @apply rounded-[14px] border border-border bg-secondary/65;
+  }
+
+  .surface-panel-hover {
+    @apply transition-colors duration-200;
+  }
+
+  .surface-panel-hover:hover {
+    @apply border-primary/40;
+  }
+
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.14em] text-primary/90;
+  }
+
+  .page-title {
+    @apply text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[3rem];
+  }
+
+  .page-lead {
+    @apply max-w-3xl text-[1.05rem] leading-relaxed text-muted-foreground sm:text-[1.15rem];
+  }
+
+  .button-primary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-[14px] border border-primary/40 bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-primary/50;
+  }
+
+  .button-secondary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-[14px] border border-border bg-secondary/55 px-6 py-2.5 text-sm font-medium text-foreground transition hover:border-primary/40 hover:text-primary;
+  }
+
+  .footer-social-link {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-border bg-secondary/55 text-muted-foreground transition hover:border-primary/40 hover:text-primary;
+  }
+
+  .field-group {
+    @apply space-y-2;
+  }
+
+  .field-label {
+    @apply block text-[0.95rem] font-medium text-foreground;
+  }
+
+  .field-hint {
+    @apply text-xs text-muted-foreground;
+  }
+
+  .field-error {
+    @apply text-xs font-medium text-destructive;
+  }
+
+  .form-input {
+    @apply block w-full rounded-[14px] border border-input bg-background px-4 py-3 text-[0.95rem] text-foreground placeholder:text-muted-foreground;
+    @apply transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/40;
+  }
+
+  .status-banner {
+    @apply mb-6 rounded-[14px] border px-4 py-3 text-sm;
+  }
+
+  .status-banner-success {
+    @apply border-primary/45 bg-primary/10 text-primary;
+  }
+
+  .status-banner-error {
+    @apply border-destructive/45 bg-destructive/10 text-destructive;
+  }
+
+  .legal-content h2 {
+    @apply mt-8 text-lg font-semibold tracking-tight text-foreground;
+  }
+
+  .legal-content p {
+    @apply mt-3 text-sm leading-7 text-muted-foreground sm:text-[0.95rem];
+  }
+
+  .section-divider {
+    @apply border-t border-border/85;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
