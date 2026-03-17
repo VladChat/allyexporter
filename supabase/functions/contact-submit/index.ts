@@ -174,11 +174,46 @@ Deno.serve(async (request: Request) => {
     return jsonResponse(405, { success: false, error: "Method not allowed." });
   }
 
-  let body: ContactSubmitBody;
+  // Safely read and parse JSON body
+  let body: ContactSubmitBody = {};
   try {
-    body = (await request.json()) as ContactSubmitBody;
-  } catch {
-    return jsonResponse(400, { success: false, error: "Invalid request payload." });
+    const contentType = request.headers.get("content-type") || "";
+    if (!contentType.includes("application/json")) {
+      return jsonResponse(400, { success: false, error: "Content-Type must be application/json." });
+    }
+    
+    const textBody = await request.text();
+    if (!textBody || textBody.trim() === "") {
+      return jsonResponse(400, { success: false, error: "Request body is empty. Please provide name, email, subject, and message." });
+    }
+    
+    body = JSON.parse(textBody) as ContactSubmitBody;
+  } catch (parseError) {
+    console.error("Edge Function: Failed to parse request body:", parseError);
+    return jsonResponse(400, { 
+      success: false, 
+      error: "Invalid JSON in request body. Please check your request format." 
+    });
+  }
+
+  // Validate required fields
+  const nameRaw = toSafeString(body.name);
+  const emailRaw = toSafeString(body.email);
+  const subjectRaw = toSafeString(body.subject);
+  const messageRaw = toSafeString(body.message);
+
+  if (!nameRaw || !emailRaw || !subjectRaw || !messageRaw) {
+    const missingFields = [];
+    if (!nameRaw) missingFields.push("name");
+    if (!emailRaw) missingFields.push("email");
+    if (!subjectRaw) missingFields.push("subject");
+    if (!messageRaw) missingFields.push("message");
+    
+    console.error("Edge Function: Missing required fields:", missingFields);
+    return jsonResponse(400, { 
+      success: false, 
+      error: `Missing required fields: ${missingFields.join(", ")}.` 
+    });
   }
 
   const requestIp = getClientIp(request);
@@ -191,10 +226,10 @@ Deno.serve(async (request: Request) => {
     return jsonResponse(200, { success: true });
   }
 
-  const name = normalizeSingleLineText(toSafeString(body.name));
-  const email = normalizeEmail(toSafeString(body.email));
-  const subject = normalizeSingleLineText(toSafeString(body.subject));
-  const message = normalizeMessage(toSafeString(body.message));
+  const name = normalizeSingleLineText(nameRaw);
+  const email = normalizeEmail(emailRaw);
+  const subject = normalizeSingleLineText(subjectRaw);
+  const message = normalizeMessage(messageRaw);
 
   if (hasControlCharacters(name) || hasControlCharacters(email) || hasControlCharacters(subject) || hasControlCharacters(message)) {
     return jsonResponse(400, { success: false, error: "Message not accepted." });
