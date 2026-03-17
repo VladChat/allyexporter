@@ -33,6 +33,7 @@ const Contact = () => {
   const [honeypot, setHoneypot] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const { settings } = useSiteSettings();
 
   const handleChange = (field: keyof FormData, value: string) => {
@@ -55,6 +56,7 @@ const Contact = () => {
     }
 
     setErrors({});
+    setErrorMessage("");
     setStatus("loading");
     try {
       const submitResult = await submitContactMessage({
@@ -65,13 +67,15 @@ const Contact = () => {
         honeypot,
       });
       if (!submitResult.success) {
+        setErrorMessage(submitResult.error || "Unknown error occurred");
         setStatus("error");
         return;
       }
       setStatus("success");
       setForm({ name: "", email: "", subject: "", message: "" });
       setHoneypot("");
-    } catch {
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "Network error occurred");
       setStatus("error");
     }
   };
@@ -149,7 +153,7 @@ const Contact = () => {
 
               {status === "error" && (
                 <div role="alert" className="status-banner status-banner-error mt-6">
-                  Message not sent. Please try again later.
+                  {errorMessage || "Message not sent. Please try again later."}
                 </div>
               )}
 

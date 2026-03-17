@@ -229,8 +229,14 @@ Deno.serve(async (request: Request) => {
   const supabaseUrl = (Deno.env.get("SUPABASE_URL") ?? "").trim();
   const serviceRoleKey = (Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "").trim();
 
-  if (!supabaseUrl || !serviceRoleKey) {
-    return jsonResponse(500, { success: false, error: "Server is not configured for contact submissions." });
+  if (!supabaseUrl) {
+    console.error("Edge Function: SUPABASE_URL not configured");
+    return jsonResponse(500, { success: false, error: "Server configuration error: Supabase URL missing." });
+  }
+
+  if (!serviceRoleKey) {
+    console.error("Edge Function: SUPABASE_SERVICE_ROLE_KEY not configured");
+    return jsonResponse(500, { success: false, error: "Server configuration error: Service role key missing." });
   }
 
   const supabase = createClient(supabaseUrl, serviceRoleKey, {
@@ -248,8 +254,13 @@ Deno.serve(async (request: Request) => {
   });
 
   if (error) {
-    return jsonResponse(500, { success: false, error: "Could not store message." });
+    console.error("Edge Function: Failed to store message in Supabase:", error);
+    return jsonResponse(500, { 
+      success: false, 
+      error: `Database error: ${error.message || "Could not store message"}` 
+    });
   }
 
+  console.log("Edge Function: Message stored successfully", { name, email, subject });
   return jsonResponse(200, { success: true });
 });

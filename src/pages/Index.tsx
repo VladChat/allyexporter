@@ -24,6 +24,7 @@ const Index = () => {
   const [honeypot, setHoneypot] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const { settings } = useSiteSettings();
 
   const organizationStructuredData = {
@@ -64,6 +65,7 @@ const Index = () => {
     }
 
     setErrors({});
+    setErrorMessage("");
     setStatus("loading");
     try {
       const submitResult = await submitContactMessage({
@@ -74,6 +76,7 @@ const Index = () => {
         honeypot,
       });
       if (!submitResult.success) {
+        setErrorMessage(submitResult.error || "Unknown error occurred");
         setStatus("error");
         return;
       }
@@ -81,7 +84,8 @@ const Index = () => {
       setStatus("success");
       setForm({ name: "", email: "", subject: "", message: "" });
       setHoneypot("");
-    } catch {
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "Network error occurred");
       setStatus("error");
     }
   };
@@ -184,7 +188,7 @@ const Index = () => {
 
               {status === "error" && (
                 <div role="alert" className="status-banner status-banner-error mt-6">
-                  Message not sent. Please try again later.
+                  {errorMessage || "Message not sent. Please try again later."}
                 </div>
               )}
 
