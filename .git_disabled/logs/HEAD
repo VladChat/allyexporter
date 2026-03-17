@@ -1,0 +1,47 @@
+0000000000000000000000000000000000000000 4f8a106c111e54571ac0c0067d17a0ae192613c6 VladChat <vladislav.doroshenko@gmail.com> 1773172961 -0500	clone: from https://github.com/VladChat/allyexporter.git
+4f8a106c111e54571ac0c0067d17a0ae192613c6 d84c1279be64c2cc8bab6b669b0d166283939913 VladChat <vladislav.doroshenko@gmail.com> 1773173137 -0500	commit: ci: add deploy workflow for GitHub Pages
+d84c1279be64c2cc8bab6b669b0d166283939913 8e1934b9402a0bf5788b281024a8f5f2d00a586d VladChat <vladislav.doroshenko@gmail.com> 1773173834 -0500	commit: chore: publish site to docs (copy of dist)
+8e1934b9402a0bf5788b281024a8f5f2d00a586d 1bd1111bb23ec605ed077f6f5a236eb857fa8aad VladChat <vladislav.doroshenko@gmail.com> 1773174039 -0500	commit: fix(pages): serve built site from repo root (add built assets)
+1bd1111bb23ec605ed077f6f5a236eb857fa8aad dcd85c4b3981ff4841434101b9b88adf418e4a41 VladChat <vladislav.doroshenko@gmail.com> 1773174365 -0500	commit: chore: remove docs; use Actions to deploy (Pages workflow)
+dcd85c4b3981ff4841434101b9b88adf418e4a41 aa8a8081f73cd0cf9c2ec066a73e330c4d364ddf VladChat <vladislav.doroshenko@gmail.com> 1773174378 -0500	commit: ci: trigger Pages workflow
+aa8a8081f73cd0cf9c2ec066a73e330c4d364ddf a7d20f0557f1191dd1865365267b79ab50706018 VladChat <vladislav.doroshenko@gmail.com> 1773174382 -0500	commit: ci: trigger Pages workflow
+a7d20f0557f1191dd1865365267b79ab50706018 c1160ce6c0acd30b240588d373ce59273f144c3b VladChat <vladislav.doroshenko@gmail.com> 1773174525 -0500	commit: chore: remove built assets; rely on CI build
+c1160ce6c0acd30b240588d373ce59273f144c3b f456db597429cdbc091e5372d86d5014635d2e6f VladChat <vladislav.doroshenko@gmail.com> 1773174532 -0500	commit: ci: trigger build-and-deploy workflow
+f456db597429cdbc091e5372d86d5014635d2e6f c5ebb1f48b8d91bd0a36c6d360ea976f05e6e5a5 VladChat <vladislav.doroshenko@gmail.com> 1773174601 -0500	commit: ci: build and deploy via Pages workflow
+c5ebb1f48b8d91bd0a36c6d360ea976f05e6e5a5 8757da890c8a7f7ea8c726be6715cbdf413dda4e VladChat <vladislav.doroshenko@gmail.com> 1773175042 -0500	commit: ci: rerun pages deploy
+8757da890c8a7f7ea8c726be6715cbdf413dda4e 227a7431fa7066d976ac193f10c42e4df43fde04 VladChat <vladislav.doroshenko@gmail.com> 1773175113 -0500	commit: chore(ci): remove legacy deploy.yml workflow
+227a7431fa7066d976ac193f10c42e4df43fde04 8a023949b0d5e50fcf0f42b6ebed4577ff1b7ae9 VladChat <vladislav.doroshenko@gmail.com> 1773175278 -0500	commit: ci: use npm install in Pages workflow (fix npm ci failures)
+8a023949b0d5e50fcf0f42b6ebed4577ff1b7ae9 721d4ef2968fc608dc71ee3fccdb6d7c003f4d3c VladChat <vladislav.doroshenko@gmail.com> 1773175478 -0500	commit: chore(ci): update package-lock.json to fix Actions install
+721d4ef2968fc608dc71ee3fccdb6d7c003f4d3c 0a768ce07cb0af981ea4d6f0fa0f82cc1a8a9c01 VladChat <vladislav.doroshenko@gmail.com> 1773175752 -0500	commit: ci: rerun pages deploy
+0a768ce07cb0af981ea4d6f0fa0f82cc1a8a9c01 96c2f2498fbee70c7002ed9c801188497611b5ef VladChat <vladislav.doroshenko@gmail.com> 1773176048 -0500	commit: chore(ci): restore dev index.html for Vite build
+96c2f2498fbee70c7002ed9c801188497611b5ef b442320f6ee79ea0dafa2bd6f5232fa994187c89 VladChat <vladislav.doroshenko@gmail.com> 1773176055 -0500	commit: ci: trigger pages deploy after restoring index.html
+b442320f6ee79ea0dafa2bd6f5232fa994187c89 13359ac2d659937458f5478e08df090380b7ea56 VladChat <vladislav.doroshenko@gmail.com> 1773176169 -0500	commit: chore(ci): fix index.html (use dev entry)
+13359ac2d659937458f5478e08df090380b7ea56 d8fca7df840dd5c006f9917036a3c10fcd568319 VladChat <vladislav.doroshenko@gmail.com> 1773176174 -0500	commit: ci: trigger pages deploy after fixing index.html
+d8fca7df840dd5c006f9917036a3c10fcd568319 4d3545d788be0684158a9ba53c9f894afba3d1a4 VladChat <vladislav.doroshenko@gmail.com> 1773176624 -0500	commit: fix(router): set BrowserRouter basename to import.meta.env.BASE_URL for Pages subpath
+4d3545d788be0684158a9ba53c9f894afba3d1a4 e80426612ea1ae86e43079101f6a7c8a8d306348 VladChat <vladislav.doroshenko@gmail.com> 1773176631 -0500	commit: ci: trigger pages deploy after router fix
+e80426612ea1ae86e43079101f6a7c8a8d306348 ae6ef72f7f6fb1a9e0548912312479ad204dfec7 VladChat <vladislav.doroshenko@gmail.com> 1773177465 -0500	commit: chore(contact): update company email and phone
+ae6ef72f7f6fb1a9e0548912312479ad204dfec7 6e64ab0ad88c82c78e58f30b068a55e40dd7118e VladChat <vladislav.doroshenko@gmail.com> 1773177482 -0500	commit: ci(pages): add SPA 404 fallback by copying index.html to 404.html
+6e64ab0ad88c82c78e58f30b068a55e40dd7118e 0d9a116ea462d3beafa8a142baf736d1c9b3c6c6 VladChat <vladislav.doroshenko@gmail.com> 1773177489 -0500	commit: ci: trigger pages deploy after adding 404 fallback and contact update
+0d9a116ea462d3beafa8a142baf736d1c9b3c6c6 0d9a116ea462d3beafa8a142baf736d1c9b3c6c6 VladChat <vladislav.doroshenko@gmail.com> 1773201469 -0500	reset: moving to HEAD
+0d9a116ea462d3beafa8a142baf736d1c9b3c6c6 ba4dfef66eef08697eabff9825f788cd395345d9 VladChat <vladislav.doroshenko@gmail.com> 1773201469 -0500	pull origin main: Fast-forward
+ba4dfef66eef08697eabff9825f788cd395345d9 ba4dfef66eef08697eabff9825f788cd395345d9 VladChat <vladislav.doroshenko@gmail.com> 1773201539 -0500	reset: moving to origin/main
+ba4dfef66eef08697eabff9825f788cd395345d9 bb9550ddf55af51337830122db144818bf6cd612 VladChat <vladislav.doroshenko@gmail.com> 1773202675 -0500	commit: rebuild with supabase secrets
+bb9550ddf55af51337830122db144818bf6cd612 222ef44e9964045491d4b4c7c27b19218a3ba301 VladChat <vladislav.doroshenko@gmail.com> 1773262438 -0500	commit: Fix GitHub Pages custom domain base path
+222ef44e9964045491d4b4c7c27b19218a3ba301 17e8aaf13c3a906a5debd30d2486b562b44c9a31 VladChat <vladislav.doroshenko@gmail.com> 1773262476 -0500	pull --rebase origin main (start): checkout 17e8aaf13c3a906a5debd30d2486b562b44c9a31
+17e8aaf13c3a906a5debd30d2486b562b44c9a31 cf873f4fcb5e9334db20a966c8c544c143caa9a2 VladChat <vladislav.doroshenko@gmail.com> 1773262634 -0500	rebase (continue): Fix GitHub Pages custom domain base path
+cf873f4fcb5e9334db20a966c8c544c143caa9a2 cf873f4fcb5e9334db20a966c8c544c143caa9a2 VladChat <vladislav.doroshenko@gmail.com> 1773262634 -0500	rebase (finish): returning to refs/heads/main
+cf873f4fcb5e9334db20a966c8c544c143caa9a2 a08e85281388a06023d2ec9294b8537ab4448e66 VladChat <vladislav.doroshenko@gmail.com> 1773263272 -0500	commit: Refine site design, tighten copy, and update favicon
+a08e85281388a06023d2ec9294b8537ab4448e66 1ebee7854b9a49b442b62d20a6df3ca8258d670a VladChat <vladislav.doroshenko@gmail.com> 1773268323 -0500	commit: Redesign corporate UX system and accessibility across core pages
+1ebee7854b9a49b442b62d20a6df3ca8258d670a 8c33bc95ab998d6c033f9bacc222b117909d7d56 VladChat <vladislav.doroshenko@gmail.com> 1773288061 -0500	commit: Redesign site with minimalist dark company profile UI
+8c33bc95ab998d6c033f9bacc222b117909d7d56 900c7c1d5afc79f6ed69ccad27bd67a7194e4889 VladChat <vladislav.doroshenko@gmail.com> 1773288281 -0500	commit: Fix Pages workflow 401 by removing configure-pages step
+900c7c1d5afc79f6ed69ccad27bd67a7194e4889 6304d32bc5e23b4c1d610ce178e378f4f89f503b VladChat <vladislav.doroshenko@gmail.com> 1773289147 -0500	commit: Refine minimalist verification content and skyline hero layout
+6304d32bc5e23b4c1d610ce178e378f4f89f503b e82362abb91f8bc2a266fa6b4907e039f5e15602 VladChat <vladislav.doroshenko@gmail.com> 1773291192 -0500	commit: Apply exact profile-site copy, logo, scroll reset, and homepage/layout refinements
+e82362abb91f8bc2a266fa6b4907e039f5e15602 6275bd55ade8809ebf442c0ae8b30193516901b9 VladChat <vladislav.doroshenko@gmail.com> 1773340537 -0500	commit: Redesign homepage structure based on Figma while preserving dark theme
+6275bd55ade8809ebf442c0ae8b30193516901b9 d10e45af57379b4648d6d9aad0fd596703384b30 VladChat <vladislav.doroshenko@gmail.com> 1773345550 -0500	commit: Simplify layout: remove services, compact footer, cleaner company profile
+d10e45af57379b4648d6d9aad0fd596703384b30 0c45834af1a6b57b7cb3e82d1bc76cbe06966579 VladChat <vladislav.doroshenko@gmail.com> 1773347850 -0500	commit: Use provided header logo and PNG favicon assets
+0c45834af1a6b57b7cb3e82d1bc76cbe06966579 0ec928d0352a278639dd867ed60be140f997eb2a VladChat <vladislav.doroshenko@gmail.com> 1773349931 -0500	commit: Wire provided favicon package and keep header on image logo
+0ec928d0352a278639dd867ed60be140f997eb2a 6d2f19374ba5419acfd2241941bb75a7f6fdb01d VladChat <vladislav.doroshenko@gmail.com> 1773351144 -0500	commit: Apply exact neutral homepage content simplification
+6d2f19374ba5419acfd2241941bb75a7f6fdb01d 9e20ac8c0a30b749cde375ccbb7650d92b7b154b VladChat <vladislav.doroshenko@gmail.com> 1773351823 -0500	commit: Restore about/contact visuals as image-only blocks
+9e20ac8c0a30b749cde375ccbb7650d92b7b154b 4edb92eaa9483585684862a117908275e725388a VladChat <vladislav.doroshenko@gmail.com> 1773353938 -0500	commit: Add Supabase-secured admin panel and dynamic contact settings
+4edb92eaa9483585684862a117908275e725388a b56a12c60765f7087b35e400f5261cb4acc7e47d VladChat <vladislav.doroshenko@gmail.com> 1773375517 -0500	commit: chore: update admin panel supabase integration
+b56a12c60765f7087b35e400f5261cb4acc7e47d 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b VladChat <vladislav.doroshenko@gmail.com> 1773427010 -0500	commit: chore: remove admin login helper message
