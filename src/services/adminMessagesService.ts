@@ -9,6 +9,7 @@ export type ContactMessage = {
   created_at: string;
 };
 
+<<<<<<< HEAD
 export const ADMIN_MESSAGES_PAGE_SIZE = 5;
 
 export type ContactMessagesPage = {
@@ -42,6 +43,16 @@ export async function getContactMessagesPage(
     page: safePage,
     pageSize: safePageSize,
   };
+=======
+export async function getContactMessages(): Promise<ContactMessage[]> {
+  const { data, error } = await supabaseClient
+    .from("contact_messages")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) throw new Error(error.message);
+  return (data ?? []) as ContactMessage[];
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
 }
 
 export async function deleteContactMessage(messageId: string): Promise<void> {

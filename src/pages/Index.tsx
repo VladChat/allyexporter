@@ -9,10 +9,17 @@ import { submitContactMessage } from "@/services/contactService";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const contactSchema = z.object({
+<<<<<<< HEAD
   name: z.string().trim().min(2, "Full name must be at least 2 characters").max(100),
   email: z.string().trim().email("Please enter a valid email address").max(255),
   subject: z.string().trim().min(3, "Subject must be at least 3 characters").max(200),
   message: z.string().trim().min(10, "Message must be at least 10 characters").max(5000),
+=======
+  name: z.string().trim().min(1, "Full name is required").max(100),
+  email: z.string().trim().email("Please enter a valid email address").max(255),
+  subject: z.string().trim().min(1, "Subject is required").max(200),
+  message: z.string().trim().min(1, "Message is required").max(5000),
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
 });
 
 type FormData = z.infer<typeof contactSchema>;
@@ -21,7 +28,10 @@ type Status = "idle" | "loading" | "success" | "error";
 
 const Index = () => {
   const [form, setForm] = useState<FormData>({ name: "", email: "", subject: "", message: "" });
+<<<<<<< HEAD
   const [honeypot, setHoneypot] = useState("");
+=======
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<Status>("idle");
   const { settings } = useSiteSettings();
@@ -71,7 +81,10 @@ const Index = () => {
         email: result.data.email,
         subject: result.data.subject,
         message: result.data.message,
+<<<<<<< HEAD
         honeypot,
+=======
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
       });
       if (!submitResult.success) {
         setStatus("error");
@@ -80,7 +93,10 @@ const Index = () => {
 
       setStatus("success");
       setForm({ name: "", email: "", subject: "", message: "" });
+<<<<<<< HEAD
       setHoneypot("");
+=======
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
     } catch {
       setStatus("error");
     }
@@ -165,12 +181,16 @@ const Index = () => {
           </div>
 
           <div className="mt-7 grid gap-4 lg:grid-cols-[1.02fr_0.98fr]">
+<<<<<<< HEAD
             <form
               onSubmit={handleSubmit}
               noValidate
               aria-busy={status === "loading"}
               className="surface-panel relative p-6 sm:p-7"
             >
+=======
+            <form onSubmit={handleSubmit} noValidate aria-busy={status === "loading"} className="surface-panel p-6 sm:p-7">
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
               <h3 className="flex items-center gap-2 text-xl font-semibold tracking-tight text-foreground">
                 <MessageSquareText className="h-5 w-5 text-primary" aria-hidden="true" />
                 Contact form
@@ -188,6 +208,7 @@ const Index = () => {
                 </div>
               )}
 
+<<<<<<< HEAD
               <div
                 aria-hidden="true"
                 style={{
@@ -211,6 +232,8 @@ const Index = () => {
                 />
               </div>
 
+=======
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
               <div className="mt-6 space-y-4">
                 <div className="field-group">
                   <label htmlFor="home-contact-name" className="field-label">

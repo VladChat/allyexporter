@@ -1,12 +1,16 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { company } from "@/config/company";
+<<<<<<< HEAD
 import {
   ADMIN_MESSAGES_PAGE_SIZE,
   deleteContactMessage,
   getContactMessagesPage,
   type ContactMessage,
 } from "@/services/adminMessagesService";
+=======
+import { deleteContactMessage, getContactMessages, type ContactMessage } from "@/services/adminMessagesService";
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
 import {
   fallbackSiteSettings,
   getLatestSiteSettingsRecord,
@@ -19,8 +23,11 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
   const [messages, setMessages] = useState<ContactMessage[]>([]);
+<<<<<<< HEAD
   const [messagesPage, setMessagesPage] = useState(1);
   const [messagesTotalCount, setMessagesTotalCount] = useState(0);
+=======
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
   const [messagesLoading, setMessagesLoading] = useState(true);
   const [messagesError, setMessagesError] = useState<string>("");
   const [deletingMessageId, setDeletingMessageId] = useState<string | null>(null);
@@ -31,6 +38,7 @@ const AdminDashboard = () => {
   const [settingsStatus, setSettingsStatus] = useState<"idle" | "saving" | "success" | "error">("idle");
   const [settingsError, setSettingsError] = useState<string>("");
 
+<<<<<<< HEAD
   const loadMessages = async (targetPage = 1) => {
     setMessagesLoading(true);
     setMessagesError("");
@@ -39,6 +47,14 @@ const AdminDashboard = () => {
       setMessages(pageData.messages);
       setMessagesTotalCount(pageData.totalCount);
       setMessagesPage(pageData.page);
+=======
+  const loadMessages = async () => {
+    setMessagesLoading(true);
+    setMessagesError("");
+    try {
+      const data = await getContactMessages();
+      setMessages(data);
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
     } catch (error) {
       setMessagesError(error instanceof Error ? error.message : "Failed to load messages.");
     } finally {
@@ -71,7 +87,11 @@ const AdminDashboard = () => {
   };
 
   useEffect(() => {
+<<<<<<< HEAD
     void loadMessages(1);
+=======
+    void loadMessages();
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
     void loadSettings();
   }, []);
 
@@ -81,10 +101,14 @@ const AdminDashboard = () => {
 
     try {
       await deleteContactMessage(messageId);
+<<<<<<< HEAD
       const nextTotalCount = Math.max(messagesTotalCount - 1, 0);
       const nextTotalPages = Math.max(1, Math.ceil(nextTotalCount / ADMIN_MESSAGES_PAGE_SIZE));
       const nextPage = Math.min(messagesPage, nextTotalPages);
       await loadMessages(nextPage);
+=======
+      setMessages((prev) => prev.filter((item) => item.id !== messageId));
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
     } catch (error) {
       setMessagesError(error instanceof Error ? error.message : "Delete failed.");
     } finally {
@@ -92,10 +116,13 @@ const AdminDashboard = () => {
     }
   };
 
+<<<<<<< HEAD
   const totalPages = Math.max(1, Math.ceil(messagesTotalCount / ADMIN_MESSAGES_PAGE_SIZE));
   const canGoPrevious = messagesPage > 1 && !messagesLoading;
   const canGoNext = messagesPage < totalPages && !messagesLoading;
 
+=======
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
   const handleSettingsSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setSettingsStatus("saving");
@@ -155,7 +182,11 @@ const AdminDashboard = () => {
             <button
               type="button"
               className="button-secondary"
+<<<<<<< HEAD
               onClick={() => void loadMessages(messagesPage)}
+=======
+              onClick={() => void loadMessages()}
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
               disabled={messagesLoading}
             >
               {messagesLoading ? "Refreshing..." : "Refresh"}
@@ -178,6 +209,7 @@ const AdminDashboard = () => {
 
           {!messagesLoading && messages.length > 0 ? (
             <div className="mt-5 space-y-3">
+<<<<<<< HEAD
               <div className="flex items-center justify-between gap-3 rounded-md border border-border/70 bg-background/70 px-3 py-2">
                 <p className="text-xs text-muted-foreground">
                   Page {messagesPage} of {totalPages} · {messagesTotalCount} total messages
@@ -202,16 +234,27 @@ const AdminDashboard = () => {
                 </div>
               </div>
 
+=======
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
               {messages.map((item) => (
                 <article key={item.id} className="surface-panel-soft p-4">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="space-y-1">
+<<<<<<< HEAD
                       <p className="break-words text-sm font-semibold text-foreground">{item.subject}</p>
                       <p className="text-xs text-muted-foreground">{new Date(item.created_at).toLocaleString()}</p>
                       <p className="break-words text-sm text-foreground">
                         <span className="font-medium">Name:</span> {item.name}
                       </p>
                       <p className="break-all text-sm text-foreground">
+=======
+                      <p className="text-sm font-semibold text-foreground">{item.subject}</p>
+                      <p className="text-xs text-muted-foreground">{new Date(item.created_at).toLocaleString()}</p>
+                      <p className="text-sm text-foreground">
+                        <span className="font-medium">Name:</span> {item.name}
+                      </p>
+                      <p className="text-sm text-foreground">
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
                         <span className="font-medium">Email:</span> {item.email}
                       </p>
                     </div>
@@ -226,6 +269,7 @@ const AdminDashboard = () => {
                     </button>
                   </div>
 
+<<<<<<< HEAD
                   <p className="mt-3 max-h-72 overflow-y-auto whitespace-pre-wrap break-words text-sm leading-7 text-muted-foreground">
                     {item.message}
                   </p>
@@ -250,6 +294,11 @@ const AdminDashboard = () => {
                   Next
                 </button>
               </div>
+=======
+                  <p className="mt-3 whitespace-pre-wrap text-sm leading-7 text-muted-foreground">{item.message}</p>
+                </article>
+              ))}
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
             </div>
           ) : null}
         </section>

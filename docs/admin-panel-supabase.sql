@@ -47,7 +47,10 @@ $$;
 
 -- 4) Remove old potentially conflicting policies (safe to rerun).
 drop policy if exists "contact_messages_insert_public" on public.contact_messages;
+<<<<<<< HEAD
 drop policy if exists "contact_messages_insert_admin_only" on public.contact_messages;
+=======
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
 drop policy if exists "contact_messages_select_admin_only" on public.contact_messages;
 drop policy if exists "contact_messages_delete_admin_only" on public.contact_messages;
 
@@ -57,8 +60,17 @@ drop policy if exists "site_settings_update_admin_only" on public.site_settings;
 drop policy if exists "site_settings_delete_admin_only" on public.site_settings;
 
 -- 5) contact_messages policies
+<<<<<<< HEAD
 -- Direct browser/public inserts are intentionally NOT allowed.
 -- Contact form submissions must go through the server-side function.
+=======
+-- Keep existing public form inserts working.
+create policy "contact_messages_insert_public"
+  on public.contact_messages
+  for insert
+  to anon, authenticated
+  with check (true);
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
 
 -- Only admin email can read messages.
 create policy "contact_messages_select_admin_only"
@@ -74,6 +86,7 @@ create policy "contact_messages_delete_admin_only"
   to authenticated
   using (public.is_admin_user());
 
+<<<<<<< HEAD
 -- Optional: allow authenticated admin user to insert manually in SQL/UI if ever needed.
 create policy "contact_messages_insert_admin_only"
   on public.contact_messages
@@ -81,6 +94,8 @@ create policy "contact_messages_insert_admin_only"
   to authenticated
   with check (public.is_admin_user());
 
+=======
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
 -- 6) site_settings policies
 -- Public read allowed because these values are shown on the public website.
 create policy "site_settings_select_public"

@@ -26,8 +26,12 @@ This script:
 - enables RLS
 - creates helper function `public.is_admin_user()` for stable admin checks
 - adds policies so only `allyexporter@gmail.com` can read/delete messages and update settings
+<<<<<<< HEAD
 - blocks direct anonymous/public inserts into `contact_messages`
 - keeps admin-only insert/read/delete access for `contact_messages`
+=======
+- keeps anonymous insert for contact form submissions
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
 
 If you see this error in the admin panel:
 
@@ -95,6 +99,7 @@ For this project, `VITE_SUPABASE_URL` must be:
 
 These are used for both public contact form write and admin auth/data operations.
 
+<<<<<<< HEAD
 For secure contact submissions via server function, also make sure the function runtime has:
 
 - `SUPABASE_URL`
@@ -105,6 +110,8 @@ Optional anti-spam captcha verification variables:
 - `CONTACT_CAPTCHA_SECRET` (if set, captcha token verification is required)
 - `CONTACT_CAPTCHA_VERIFY_URL` (optional override; defaults to Cloudflare Turnstile verify URL)
 
+=======
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
 ## 4) Admin route behavior
 
 - `/admin` shows login page.
@@ -137,6 +144,7 @@ Fallback behavior:
 
 ## 7) Contact form safety
 
+<<<<<<< HEAD
 Contact form submission should go through the server-side function `contact-submit`:
 
 - public forms call `POST /functions/v1/contact-submit`
@@ -152,3 +160,9 @@ Default anti-spam checks in `contact-submit` include:
 - honeypot field rejection (`website`)
 - basic IP-based rate limiting
 - optional captcha verification (when `CONTACT_CAPTCHA_SECRET` is configured)
+=======
+Existing contact form insert flow remains active and should not be broken:
+
+- form writes to `contact_messages`
+- anonymous insert stays enabled via RLS policy
+>>>>>>> 78a7ca0b2c834bbd6134a5676134b58b36ef8d4b
